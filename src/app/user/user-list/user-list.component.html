@@ -1,0 +1,42 @@
+
+<div class="container-fluid mt-2">
+
+    <table class="table border 2 px solid">
+        <thead>
+            <tr>
+                <th scope="col">User Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Role</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contact Number</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of userList">
+                <td>{{user.name}}</td>
+                <td>{{user.description}}</td>
+                <td>{{user.role}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.number}}</td>
+                <td>
+                    <button  type="button" class="btn btn-primary" routerLink="/users/edit/{{user.id}}">Edit</button>
+                    <button type="button" class="btn btn-danger btn-delete" (click)="deleteUser(user.id)">Delete</button>
+    
+                </td>
+    
+              
+    
+            </tr>
+    
+        </tbody>
+    </table>
+    
+    
+    </div>
+    
+    
+    
+    
+    
+    

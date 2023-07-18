@@ -1,0 +1,53 @@
+#sidebar{
+    width: 260px;
+    background-color: #2263AE;
+    overflow: hidden;
+    transition: 0.8s;
+    height: calc(100vh - 92px);
+   
+  
+}
+
+.link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 46px;
+    color:#fff;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: .15px;
+}
+.link a{
+    list-style: none;
+    color:#fff;
+
+}
+.client{
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:#fff;
+   cursor: pointer;
+   font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: .15px;
+
+}
+
+
+.link:hover {
+    background-color: #2bbbed66;
+}
+
+
+.active {
+    background-color: #2bbbed66;
+
+}

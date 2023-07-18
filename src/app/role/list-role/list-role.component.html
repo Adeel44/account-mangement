@@ -1,0 +1,32 @@
+
+<div class="container-fluid mt-2">
+
+    <table class="table border 2 px solid">
+        <thead>
+            <tr>
+                <th scope="col">Role</th>
+                <th scope="col">Detail</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let role of roleList">
+                <td>{{role.name}}</td>
+                <td>{{role.description}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" routerLink="/role/edit/{{role.id}}">Edit</button>
+                    <button type="button" class="btn btn-danger btn-delete" (click)="deleteRole(role.id)">Delete</button>
+    
+                </td>
+    
+              
+    
+            </tr>
+    
+        </tbody>
+    </table>
+    
+    
+    </div>
+    
+    

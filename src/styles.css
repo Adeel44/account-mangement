@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+
+*{
+    margin:0;
+    padding: 0;
+}
+
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+
+.main-area{
+
+   
+    height: calc(100vh - 92px);
+    display: flex;
+    
+    flex-direction: row;
+    
+}
+
+#content{
+   
+    width: 100%;
+    
+ }
+
+.footer{
+    bottom: 0;
+    position: fixed;
+    background-color:lightgray;
+    height: 36px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,77 @@
+<div id="sidebar">
+
+
+<!-- <div >
+	Role:{{LogedInUser.role}}<br>
+	Name:{{LogedInUser.name}}
+	Email:{{LogedInUser.email}}
+</div> -->
+
+
+	
+<!-- <div class="client link">
+	<a  aria-controls="collapseExample"
+		routerLinkActive='active'>
+		Permission Group
+	</a>
+</div>
+<div class="link" routerLink="/permission-group/add" routerLinkActive='active'>
+	Add Permission Group 
+</div>
+
+<div class="link" routerLink="/permission-group/list" routerLinkActive='active'>
+	Permission Group List
+</div> -->
+
+
+
+
+
+
+
+
+	<div class="client link" *ngIf="LogedInUser.role !=='User'">
+		<a (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample"
+			routerLinkActive='active'>
+			Users
+
+
+		</a>
+	</div>
+
+
+
+	<div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+
+
+		<div   class="link" routerLink="/users/add" routerLinkActive='active' *ngIf="LogedInUser.role !=='User' ">
+			Add User
+			<!-- <a href="" routerLink="/client/create">ADD</a> -->
+
+		</div>
+
+		<div class="link" routerLink="/users/list" routerLinkActive='active'  *ngIf="LogedInUser.role !=='User' ">
+			List User
+
+		</div>
+
+
+	</div>
+
+	<div  class="link" routerLink="/role/add" routerLinkActive='active'>
+		Add Role
+		<!-- <a href="" routerLink="/client/create">ADD</a> -->
+
+	</div>
+	<div class="link" routerLink="/role/list" routerLinkActive='active'>
+		List Role
+
+	</div>
+
+
+	
+
+
+
+</div>
+

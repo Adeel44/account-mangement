@@ -1,0 +1,76 @@
+<div class=" container-fluid  mt-2">
+  <form [formGroup]="userForm">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label" for="text">Name:</label>
+        <input type="text" class="form-control client-field" maxLength="150" id="name" formControlName="name">
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label" for="text">Description:</label>
+        <input type="text" class="form-control client-field" [maxLength]="150" id="description"
+          formControlName="description">
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label" for="text">Role:</label>
+        <!-- <input type="text" class="form-control client-field" [maxLength]="150" id="role" formControlName="role"  > -->
+
+        <ng-select  [items]="roleList"   formControlName="role" bindLabel="name" bindValue="name">
+  
+
+          <ng-option *ngFor="let role of roleList">
+              {{role.name}}
+
+          </ng-option>
+
+
+        </ng-select>
+
+
+        
+
+
+
+       
+
+        
+        <!-- <label  class="form-label" for="language">Role:</label> <br>
+        <select  name="language" id="language"  id="role" formControlName="role">
+          <option value="Admin">Admin</option>
+          <option value="Manger">Manger</option>
+          <option value="User">User</option>
+          
+          
+        </select> -->
+
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label" for="text">Email:</label>
+        <input type="text" class="form-control client-field" [maxLength]="150" id="email" formControlName="email">
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label" for="text">Contact Number:</label>
+        <input type="text" class="form-control client-field" [maxLength]="150" id="number" formControlName="number">
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label" for="text">Password:</label>
+        <input type="text" class="form-control client-field" [maxLength]="150" id="password" formControlName="password">
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-primary" [class.disabled]="userForm.invalid"
+            (click)="addUser()">Add</button>
+
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </form>
+
+
+</div>
