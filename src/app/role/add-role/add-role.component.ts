@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {FormControl,FormGroup, Validators} from '@angular/forms';
 import { RoleService } from '../role.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 
 
@@ -10,7 +12,7 @@ import { RoleService } from '../role.service';
   styleUrls: ['./add-role.component.css']
 })
 export class AddRoleComponent {
-  constructor( private roleService:RoleService ){}
+  constructor( private roleService:RoleService, private toastr: ToastrService){}
 
   roleForm = new FormGroup({
    /// id:new FormControl(''),
@@ -22,9 +24,9 @@ export class AddRoleComponent {
     console.log(this.roleForm.value)
     this.roleService.createRole(this.roleForm.value).subscribe((result:any)=>{
       this.roleForm.reset()
-      alert("Role added ")
+      this.toastr.success('Role Added Successfully');
     },(error)=>{
-      alert("Role not added ")
+       this.toastr.error("Role not added ");
     })
   }
 

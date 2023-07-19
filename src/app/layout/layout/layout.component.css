@@ -2,6 +2,11 @@
 #content{
    
     width: 100%;
-    
  }
-
+ protected-data{
+    display:flex;
+    justify-content: center;
+ }
+ h3{
+    color: red;
+ }

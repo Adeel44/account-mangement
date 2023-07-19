@@ -3,6 +3,8 @@ import {FormControl,FormGroup, Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { RoleService } from 'src/app/role/role.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-edit',
@@ -25,7 +27,7 @@ export class EditComponent implements OnInit{
   });
 
   constructor(private activatedRoute: ActivatedRoute, private user_Service: UserService , private router:Router
-    , private roleService:RoleService){
+    , private roleService:RoleService ,private toastr:ToastrService){
 
   }
 
@@ -54,8 +56,8 @@ export class EditComponent implements OnInit{
     this.user_Service.UpdateUserDetail(this.editUser.id ,this.userForm.value).subscribe((data)=>{
       console.log(data)
       this.userForm.reset();
-      alert("User Updated");
-      this.router.navigateByUrl('/users/list');
+      this.toastr.success('User Updated Successfully');
+      this.router.navigateByUrl('/auth/users/list');
     })
 
   }

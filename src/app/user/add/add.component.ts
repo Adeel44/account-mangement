@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {FormControl,FormGroup, Validators} from '@angular/forms';
 import { UserService } from '../user.service';
 import { RoleService } from 'src/app/role/role.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-add',
@@ -13,7 +15,7 @@ export class AddComponent   {
   roleList:any;
   
 
-  constructor( private user_Service:UserService , private roleService: RoleService ){
+  constructor( private user_Service:UserService , private roleService: RoleService , private toastr: ToastrService){
     this.getRoleList()
   }
   
@@ -42,13 +44,13 @@ export class AddComponent   {
     console.log(this.userForm.value)
     this.user_Service.createUser(this.userForm.value).subscribe({
       next:(res)=>{
-        alert("User  added")
+        this.toastr.success("User  added successfully");
         this.userForm.reset()
         console.log("data is"+res)
 
       },
       error:(err)=>{
-        alert("User not added")
+        this.toastr.error("User not added");
         console.log(err)
       },
       // complete:()=>{

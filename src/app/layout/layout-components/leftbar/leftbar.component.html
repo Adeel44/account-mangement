@@ -1,36 +1,6 @@
 <div id="sidebar">
 
-
-<!-- <div >
-	Role:{{LogedInUser.role}}<br>
-	Name:{{LogedInUser.name}}
-	Email:{{LogedInUser.email}}
-</div> -->
-
-
-	
-<!-- <div class="client link">
-	<a  aria-controls="collapseExample"
-		routerLinkActive='active'>
-		Permission Group
-	</a>
-</div>
-<div class="link" routerLink="/permission-group/add" routerLinkActive='active'>
-	Add Permission Group 
-</div>
-
-<div class="link" routerLink="/permission-group/list" routerLinkActive='active'>
-	Permission Group List
-</div> -->
-
-
-
-
-
-
-
-
-	<div class="client link" *ngIf="LogedInUser.role !=='User'">
+	<div class="client link" *ngIf="isAdmin">
 		<a (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample"
 			routerLinkActive='active'>
 			Users
@@ -39,18 +9,16 @@
 		</a>
 	</div>
 
-
-
 	<div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
 
 
-		<div   class="link" routerLink="/users/add" routerLinkActive='active' *ngIf="LogedInUser.role !=='User' ">
+		<div class="link" routerLink="/auth/users/add" routerLinkActive='active' *ngIf="isAdmin">
 			Add User
 			<!-- <a href="" routerLink="/client/create">ADD</a> -->
 
 		</div>
 
-		<div class="link" routerLink="/users/list" routerLinkActive='active'  *ngIf="LogedInUser.role !=='User' ">
+		<div class="link" routerLink="/auth/users/list" routerLinkActive='active' *ngIf="isAdmin">
 			List User
 
 		</div>
@@ -58,20 +26,32 @@
 
 	</div>
 
-	<div  class="link" routerLink="/role/add" routerLinkActive='active'>
-		Add Role
-		<!-- <a href="" routerLink="/client/create">ADD</a> -->
-
-	</div>
-	<div class="link" routerLink="/role/list" routerLinkActive='active'>
-		List Role
-
+	<div class="client link" *ngIf="isAdmin">
+		<a (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample"
+			routerLinkActive='active'>
+			Role
+		</a>
 	</div>
 
+	<div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+		<div class="link" routerLink="/auth/role/add" routerLinkActive='active' *ngIf="isAdmin">
+			Add Role
+			<!-- <a href="" routerLink="/client/create">ADD</a> -->
 
-	
+		</div>
+		<div class="link" routerLink="/auth/role/list" routerLinkActive='active' *ngIf="isAdmin">
+			List Role
+
+		</div>
+
+	</div>
+	<!-- <div >
+		Role:{{LogedInUser.role}}<br>
+		Name:{{LogedInUser.name}}
+		Email:{{LogedInUser.email}}
+	</div> -->
 
 
+	<a (click)="onLogoutClick()">Log out</a>
 
 </div>
-

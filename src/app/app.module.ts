@@ -8,6 +8,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from './layout/layout.module';
+import { ToastrModule } from 'ngx-toastr';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthGuard } from './guard/auth.guard';
+import { UserService } from './user/user.service';
+
+
 
 
 
@@ -24,8 +31,10 @@ import { LayoutModule } from './layout/layout.module';
     ReactiveFormsModule,
     HttpClientModule,
     LayoutModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
   ],
-  providers: [],
+  providers: [UserService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

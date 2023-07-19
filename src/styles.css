@@ -6,6 +6,8 @@
 }
 
 @import "~@ng-select/ng-select/themes/default.theme.css";
+@import 'ngx-toastr/toastr';
+
 
 
 .main-area{

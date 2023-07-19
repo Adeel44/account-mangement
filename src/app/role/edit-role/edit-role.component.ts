@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormControl,FormGroup, Validators} from '@angular/forms';
 import { RoleService } from '../role.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-role',
@@ -16,7 +17,8 @@ export class EditRoleComponent {
     description:new FormControl(''),
   });
 
-  constructor(private activatedRoute: ActivatedRoute, private roleService: RoleService , private router:Router){
+  constructor(private activatedRoute: ActivatedRoute, private roleService: RoleService ,
+    private router:Router , private toastr:ToastrService){
 
   }
 
@@ -37,8 +39,8 @@ export class EditRoleComponent {
     this.roleService.UpdateRoleDetail(this.editRole.id ,this.roleForm.value).subscribe((data)=>{
       console.log(data)
       this.roleForm.reset();
-      alert("Role Updated");
-      this.router.navigateByUrl('/role/list');
+      this.toastr.success('Role Updated Successfully');
+      this.router.navigateByUrl('/auth/role/list');
     })
 
   }

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RoleService } from '../role.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-list-role',
@@ -9,9 +11,22 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ListRoleComponent {
   roleList:any
-  constructor( private roleService:RoleService , private activatedRoute:ActivatedRoute){}
+  // Loged User Data saved in variable
+  LogedInUser:any
+  constructor( private roleService:RoleService , private activatedRoute:ActivatedRoute , private toastr:ToastrService ){
+
+  }
 
   ngOnInit(): void {
+
+    this.LogedInUser= sessionStorage.getItem('userInfo');
+    this.LogedInUser= JSON.parse(this.LogedInUser)
+    //this.role= this.LogedInUser.role
+ 
+    console.log("Login User Detail"+this.LogedInUser)
+    console.log("Login User role"+this.LogedInUser.role)
+    console.log("Login User email:"+this.LogedInUser.email)
+
     this.getRoleList()
     
   }
@@ -22,12 +37,16 @@ export class ListRoleComponent {
     })
   }
   deleteRole(roleid:any){
-    console.log(roleid)
+    if(this.LogedInUser.role==='Manger'){
+    this.toastr.warning('You are not authorized to delete Role');
+    }else{
+     console.log(roleid)
      this.roleService.deleteRoleById(roleid).subscribe((result)=>{
        //console.log(result);
-       alert("User deleted")
+       this.toastr.success("Role deleted successfully")
        this.getRoleList();
      });
+    }
 
   }
 

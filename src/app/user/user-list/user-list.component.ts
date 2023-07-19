@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-user-list',
@@ -11,12 +13,14 @@ export class UserListComponent {
   userList:any
   // logedin user data
   LogedInUser:any;
-  constructor( private user_Service:UserService , private activatedRoute:ActivatedRoute){}
+  constructor( private user_Service:UserService , private activatedRoute:ActivatedRoute, private toastr: ToastrService){
+
+  }
 
   ngOnInit(): void {
     this.getList()
 
-    this.LogedInUser= sessionStorage.getItem('userInfo');
+   this.LogedInUser= sessionStorage.getItem('userInfo');
    this.LogedInUser= JSON.parse(this.LogedInUser)
    //this.role= this.LogedInUser.role
 
@@ -36,15 +40,15 @@ export class UserListComponent {
 
   }
 
-  deleteUser(clientid:string){
-    debugger
+  deleteUser(userid:any){
+
     if(this.LogedInUser.role==='Manger'){
-      alert("You are not authorized to delete User")
+      this.toastr.warning('You are not authorized to delete User');
+      //alert("You are not authorized to delete User")
     }else{
-      console.log(clientid)
-      this.user_Service.deleteUserById(clientid).subscribe((result)=>{
-        //console.log(result);
-        alert("User deleted")
+      console.log(userid)
+      this.user_Service.deleteUserById(userid).subscribe((result)=>{
+        this.toastr.success('User deleted successfully');
         this.getList()
       });
     }

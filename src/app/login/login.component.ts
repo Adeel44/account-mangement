@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -16,7 +17,9 @@ export class LoginComponent {
   
 
   constructor(private router: Router, private http: HttpClient,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute , private toastr: ToastrService) {
+     // sessionStorage.clear()
+     }
 
   LoginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -32,17 +35,20 @@ export class LoginComponent {
         });
         if (userMatched) {
           console.log(userMatched)
+         // sessionStorage.setItem('userInfo', JSON.stringify(userMatched))
           sessionStorage.setItem('userInfo', JSON.stringify(userMatched))
-          alert("Loged in ")
+          this.toastr.success('Login Succesful');
+          //alert("Loged in ")
           this.LoginForm.reset()
-          this.router.navigate([""])
+          this.router.navigate(["/auth"] )
 
 
         } else {
-          alert("Invalid Email OR Password")
+          this.toastr.error('Invalid credentials');
+          //alert("Invalid Email OR Password")
         }
       }, err => {
-        alert("Something went wrong")
+        this.toastr.error('Server Error');
 
       })
   }

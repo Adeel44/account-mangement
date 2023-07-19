@@ -4,6 +4,18 @@
   
     <div id="content">
       <router-outlet></router-outlet>
+
+      <div *ngIf="isAdmin == true " class="protected-data">
+        <div >
+          <h3>You are not autherized to view the Protected data</h3>
+
+        </div>
+
+      
+
+      </div>
+
+      
   
     </div>
 
