@@ -41,15 +41,14 @@ export class UserService {
 
   }
 
-  Login(){
+  // Login(){
+  //   this.isLoggedIn = true;
+  //   // sessionStorage.getItem('email');
+  //   // sessionStorage.getItem('password')
+  //   this.LogedInUser.email
+  //   this.LogedInUser.password
+  // }
 
-    debugger
-    this.isLoggedIn = true;
-    // sessionStorage.getItem('email');
-    // sessionStorage.getItem('password')
-    this.LogedInUser.email
-    this.LogedInUser.password
-  }
   Logout(){
     this.isLoggedIn = false;
   }
@@ -63,6 +62,11 @@ export class UserService {
    
     return   this.LogedInUser?.email != null
     
+  }
+
+  getRole(){
+    return this.LogedInUser.role
+
   }
 
 

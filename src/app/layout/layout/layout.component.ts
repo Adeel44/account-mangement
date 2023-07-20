@@ -11,19 +11,16 @@ export class LayoutComponent implements OnInit,DoCheck{
   isAdmin=false;
 
   ngOnInit(): void {
-    debugger
+    //debugger
 
     this.LogedInUser= sessionStorage.getItem('userInfo');
    this.LogedInUser= JSON.parse(this.LogedInUser)
    //this.role= this.LogedInUser.role
-
-   
-
-  
     
   }
 
   ngDoCheck(): void {
+    //debugger
     if((this.LogedInUser.role==="User")||(this.LogedInUser.role==="Student")){
       this.isAdmin= true;
     }else{

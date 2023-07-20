@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormControl,FormGroup, Validators} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { RoleService } from 'src/app/role/role.service';
 import { ToastrService } from 'ngx-toastr';
@@ -10,24 +10,27 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.css']
 })
-export class AddComponent   {
+export class AddComponent {
 
-  roleList:any;
+  roleList: any;
   
+  userList: any;
 
-  constructor( private user_Service:UserService , private roleService: RoleService , private toastr: ToastrService){
+
+  constructor(private user_Service: UserService, private roleService: RoleService, private toastr: ToastrService) {
     this.getRoleList()
+    this.getUserList()
   }
-  
+
 
   userForm = new FormGroup({
-   /// id:new FormControl(''),
-    name:new FormControl('', [Validators.required ]),
-    description:new FormControl(''),
-    role:new FormControl('', [Validators.required ]),
-    email:new FormControl('', [Validators.required,  Validators.email ]),
-    number:new FormControl('', [Validators.required , Validators.minLength(6)]),
-    password:new FormControl('', [Validators.required , Validators.minLength(6) ]),
+    /// id:new FormControl(''),
+    name: new FormControl('', [Validators.required]),
+    description: new FormControl(''),
+    role: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    number: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
   });
 
   // addUser(){
@@ -40,29 +43,48 @@ export class AddComponent   {
   //   })
   // }
 
-  addUser(){
-    console.log(this.userForm.value)
-    this.user_Service.createUser(this.userForm.value).subscribe({
-      next:(res)=>{
-        this.toastr.success("User  added successfully");
-        this.userForm.reset()
-        console.log("data is"+res)
+  addUser() {
 
-      },
-      error:(err)=>{
-        this.toastr.error("User not added");
-        console.log(err)
-      },
-      // complete:()=>{
-      //   console.log("User added")
-      // }
-    
+    const emailExist = this.userList.find((data: any) => {
+      return data.email === this.userForm.value.email
     })
+
+    if (emailExist) {
+      this.toastr.warning("Email already exist");
+    } else {
+
+      console.log(this.userForm.value)
+      this.user_Service.createUser(this.userForm.value).subscribe({
+
+        next: (res) => {
+          this.toastr.success("User  added successfully");
+          this.userForm.reset()
+          console.log("data is" + res)
+
+        },
+        error: (err) => {
+          this.toastr.error("User not added");
+          console.log(err)
+        }
+
+      })
+    }
+
+
   }
 
-  getRoleList(){
-    this.roleService.getRoleList().subscribe((result:any)=>{
-    this.roleList = result
+  getUserList() {
+    this.user_Service.getUserList().subscribe((res: any) => {
+      // stored the user list in variable
+      this.userList = res
+      console.log("user list" + res)
+    })
+
+  }
+
+  getRoleList() {
+    this.roleService.getRoleList().subscribe((result: any) => {
+      this.roleList = result
       console.log(result)
     })
   }

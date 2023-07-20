@@ -42,7 +42,7 @@ export class UserListComponent {
 
   deleteUser(userid:any){
 
-    if(this.LogedInUser.role==='Manger'){
+    if(this.LogedInUser.role==='Manager'){
       this.toastr.warning('You are not authorized to delete User');
       //alert("You are not authorized to delete User")
     }else{

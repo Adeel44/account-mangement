@@ -3,10 +3,13 @@
    
     width: 100%;
  }
- protected-data{
+ /* protected-data{
     display:flex;
     justify-content: center;
- }
+ } */
  h3{
+   margin-top: 15px;
+   display: flex;
+    justify-content: center;
     color: red;
  }

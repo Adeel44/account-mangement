@@ -37,9 +37,9 @@ export class LeftbarComponent implements OnInit , DoCheck{
   }
 
   ngDoCheck(){
-   // debugger
+    debugger
     console.log("DO CHECK"+ this.LogedInUser.role)
-    if((this.LogedInUser.role==="Admin")||(this.LogedInUser.role==="Manger")){
+    if((this.LogedInUser.role==="Admin")||(this.LogedInUser.role==="Manager")){
       this.isAdmin= true;
     }else{
       this.isAdmin= false
@@ -51,7 +51,7 @@ export class LeftbarComponent implements OnInit , DoCheck{
 
     //sessionStorage.removeItem('userinfo')
     sessionStorage.clear()
-    console.log("Hello")
+    
    
   }
 

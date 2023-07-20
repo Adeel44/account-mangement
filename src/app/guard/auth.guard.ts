@@ -7,37 +7,34 @@ import { UserService } from '../user/user.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private userService:UserService, private router:Router){}
+  constructor(private userService: UserService, private router: Router) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-    ): boolean| Promise<boolean>| Observable<boolean>{
-
-  //    let isLoggedin = this.userService.isAuth();
-
-  //    if(isLoggedin){
+  ): boolean | Promise<boolean> | Observable<boolean> {
     
-  //     return true;
+    //    let isLoggedin = this.userService.isAuth();
 
-  //    }else{
-  //     this.router.navigate(['/login']);
-  //    }
+    //    if(isLoggedin){
 
-  // return true;
-  // }
+    //     return true;
 
+    //    }else{
+    //     this.router.navigate(['/login']);
+    //    }
 
+    // return true;
+    // }
+    //////
 
-  if(this.userService.isLogged()){
-    return true
+    if (this.userService.isLogged()) {
+      return true
 
-  }else{
-    this.router.navigate(['/login']);
-    return false;
-  }
+    } else {
+      this.router.navigate(['/login']);
+      return false;
     }
+  }
 
-  
-  
 }

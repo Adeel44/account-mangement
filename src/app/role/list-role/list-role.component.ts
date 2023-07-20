@@ -37,7 +37,7 @@ export class ListRoleComponent {
     })
   }
   deleteRole(roleid:any){
-    if(this.LogedInUser.role==='Manger'){
+    if(this.LogedInUser.role==='Manager'){
     this.toastr.warning('You are not authorized to delete Role');
     }else{
      console.log(roleid)
