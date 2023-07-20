@@ -35,10 +35,8 @@ export class LoginComponent {
         });
         if (userMatched) {
           console.log(userMatched)
-         // sessionStorage.setItem('userInfo', JSON.stringify(userMatched))
           sessionStorage.setItem('userInfo', JSON.stringify(userMatched))
           this.toastr.success('Login Succesful');
-          //alert("Loged in ")
           this.LoginForm.reset()
           this.router.navigate(["/auth"] )
 

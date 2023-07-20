@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class UserService {
-  isLoggedIn = false;
+  //isLoggedIn = false;
   LogedInUser:any
 
   baseURL = "http://localhost:3000/user"
@@ -41,22 +41,6 @@ export class UserService {
 
   }
 
-  // Login(){
-  //   this.isLoggedIn = true;
-  //   // sessionStorage.getItem('email');
-  //   // sessionStorage.getItem('password')
-  //   this.LogedInUser.email
-  //   this.LogedInUser.password
-  // }
-
-  Logout(){
-    this.isLoggedIn = false;
-  }
-
-  // isAuth(){
-   
-  //   return this.isLoggedIn;
-  // }
 
   isLogged(){
    
@@ -68,7 +52,4 @@ export class UserService {
     return this.LogedInUser.role
 
   }
-
-
-
 }

@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class LeftbarComponent implements OnInit , DoCheck{
 
   isCollapsed = true;
+  
 
   LogedInUser:any;
   LogedInUserDetail:any
@@ -37,7 +38,7 @@ export class LeftbarComponent implements OnInit , DoCheck{
   }
 
   ngDoCheck(){
-    debugger
+    
     console.log("DO CHECK"+ this.LogedInUser.role)
     if((this.LogedInUser.role==="Admin")||(this.LogedInUser.role==="Manager")){
       this.isAdmin= true;
