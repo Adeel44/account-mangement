@@ -11,13 +11,15 @@ const routes: Routes = [
     path: 'auth', component: LayoutComponent, 
     children: [
       { path: 'users', loadChildren: () => import('./user/user.module').then(mod => mod.UserModule) },
-      { path: 'role',  loadChildren: () => import('./role/role.module').then(mod => mod.RoleModule) }
+      { path: 'role',  loadChildren: () => import('./role/role.module').then(mod => mod.RoleModule) },
+      { path: 'ledger',  loadChildren: () => import('./ledger/ledger.module').then(mod => mod.LedgerModule) }
+
      // { path: 'permission-group', loadChildren: () => import('./permission-group/permission-group.module').then(mod => mod.PermissionGroupModule) }
       
     ] ,canActivate:[AuthGuard]
    },
   {path:'login' , component:LoginComponent}
-  
+
 ];
 
 @NgModule({
