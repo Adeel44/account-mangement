@@ -3,23 +3,24 @@
     <form [formGroup]="ledgerForm" >
         <div class="row">
             <div class="col-md-6 mb-3">
-              <label class="form-label" for="text">Initial Amount:</label>
-              <input type="text" class="form-control client-field" maxLength="150" id="name" formControlName="iamount"> 
+              <label class="form-label" for="text">Description:</label>
+              <input type="text" class="form-control client-field" maxLength="150" id="description" formControlName="description"> 
               </div> 
+
               <div class="col-md-6 mb-3">
                 <label class="form-label" for="text">Credit:</label>
-                <input type="text"  class="form-control client-field"[maxLength]="150" id="description" formControlName="credit"> 
+                <input type="number"  class="form-control client-field"[maxLength]="150" id="amount" formControlName="amount"> 
               </div>
               
         </div>
         <div class="row">
             <div class="col-md-6 mb-3">
               <label class="form-label" for="text">Debit:</label>
-              <input type="text" class="form-control client-field" maxLength="150" id="name" formControlName="debit"> 
+              <input type="number" class="form-control client-field" maxLength="150" id="name" formControlName="debit"> 
               </div> 
               <div class="col-md-6 mb-3">
-                <label class="form-label" for="text">Amount:</label>
-                <input type="text"  class="form-control client-field"[maxLength]="150" id="description" formControlName="amount"> 
+                <label class="form-label" for="text">Date:</label>
+                <input type="date"  class="form-control client-field"[maxLength]="150" id="date" formControlName="date"> 
               </div>
               
         </div>

@@ -28,14 +28,18 @@ export class ListRoleComponent {
     console.log("Login User email:"+this.LogedInUser.email)
 
     this.getRoleList()
+   
     
   }
+  
+
   getRoleList(){
     this.roleService.getRoleList().subscribe((result:any)=>{
       this.roleList = result
-      console.log(result)
+      console.log("Role list"+result)
     })
   }
+
   deleteRole(roleid:any){
     if(this.LogedInUser.role==='Manager'){
     this.toastr.warning('You are not authorized to delete Role');

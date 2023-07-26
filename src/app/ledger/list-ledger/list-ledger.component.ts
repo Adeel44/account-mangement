@@ -1,164 +1,185 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { LedgerService } from '../ledger.service';
 import { ToastrService } from 'ngx-toastr';
-import {FormControl,FormGroup, Validators} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { RoleService } from 'src/app/role/role.service';
+import { ItemsList } from '@ng-select/ng-select/lib/items-list';
 
 
-interface LedgerForm
-{
-  iamount: string, 
-  amount: number,
-  date:Date
-}
+
+// interface ILedger
+// {
+//   description: string, 
+//   amount: number,
+//   date:Date
+// }
 
 @Component({
   selector: 'app-list-ledger',
   templateUrl: './list-ledger.component.html',
   styleUrls: ['./list-ledger.component.css']
 })
-export class ListLedgerComponent implements OnInit ,OnChanges {
-  ledgerList:any
+export class ListLedgerComponent implements OnInit {
+  ledgerList: any
   // Loged User Data saved in variable
-  LogedInUser:any
-  debitSum=0;
-  deletedId:any
-  deletedLedger:any
+  LogedInUser: any
+  // storing debit and credit sum initialy 0
+  debitSum = 0;
+  creditSum = 0;
+  deletedId: any
+  deletedLedger: any
 
-  negitiveNumber= false
+  //negitiveNumber = false
 
-  creditSum=0;
-  //name:any;
-  constructor( private ledgerService:LedgerService  , private toastr:ToastrService ){
+  constructor(private ledgerService: LedgerService, private toastr: ToastrService, private role: RoleService) {
 
   }
 
   ledgerForm = new FormGroup({
-    /// id:new FormControl(''),
-    iamount:new FormControl('', [Validators.required ]),
-    amount:new FormControl(''),
+    description: new FormControl('', [Validators.required]),
+    amount: new FormControl('', [Validators.required , Validators.pattern("^[0-9,-1--9]*$")]),
+
     //debit:new FormControl(''),
     date: new FormControl(''),
- 
-   });
+
+  });
+
 
   ngOnInit(): void {
 
-    this.LogedInUser= sessionStorage.getItem('userInfo');
-    this.LogedInUser= JSON.parse(this.LogedInUser)
+    this.LogedInUser = sessionStorage.getItem('userInfo');
+    this.LogedInUser = JSON.parse(this.LogedInUser)
     //this.role= this.LogedInUser.role
- 
-    console.log("Login User Detail"+this.LogedInUser)
-    console.log("Login User role"+this.LogedInUser.role)
-    console.log("Login User email:"+this.LogedInUser.email)
+
+    console.log("Login User Detail" + this.LogedInUser)
+    console.log("Login User role" + this.LogedInUser.role)
+    console.log("Login User email:" + this.LogedInUser.email)
 
     this.getLedgerList()
 
     this.debitTottal()
     this.getcreditTottal()
-    
+
   }
 
-  createLedger(){
-    //debugger
-    console.log(this.ledgerForm.value)
-     let  negativeValue = this.ledgerForm.value!.amount
-    if(this.ledgerForm.value.amount! < '0'){
-      this.negitiveNumber = true
-      console.log("Negitive number")
-    }else{
-      console.log("Positive")
+  createLedger() {
+
+    if(!this.ledgerForm.invalid){
+    
+    let checkValue = Number(this.ledgerForm.value.amount)
+    if(checkValue==0){
+      this.toastr.warning('Enter postiver OR negitive amount');
+    }
+    else if(checkValue < 0) {
+      this.ledgerForm.value.amount = Math.abs(Number(this.ledgerForm.value.amount)).toString();
+
+      this.ledgerService.createLedger({ description: this.ledgerForm.value.description, debit: Math.abs(Number(this.ledgerForm.value.amount)), date: this.ledgerForm.value.date }).subscribe((result: any) => {
+
+        this.debitSum = this.debitSum + Number(result.debit)
+        console.log("New result:" + result)
+
+        this.ledgerForm.reset()
+        this.toastr.success('Record Added Successfully');
+        this.getLedgerList()
+
+      }, (error) => {
+        this.toastr.error("Record not added ");
+      })
+
+    } else {
+      this.creditSum = this.creditSum + Number(this.ledgerForm.value.amount)
+      this.ledgerService.createLedger(this.ledgerForm.value).subscribe((result: any) => {
+        this.ledgerForm.reset()
+        console.log("console")
+
+        this.toastr.success('Record Added Successfully');
+        this.getLedgerList()
+
+      }, (error) => {
+        this.toastr.error("Record not added ");
+      })
     }
 
-    // this.debitSum = this.debitSum + Number(this.ledgerForm.value?.debit)
-    // this.creditSum = this.creditSum + Number(this.ledgerForm.value?.credit)
+  }
+  else{
+    alert("Invalid form")
+  }
 
+  }
 
-    this.ledgerService.createLedger(this.ledgerForm.value).subscribe((result:any)=>{
-      this.ledgerForm.reset()
-      console.log("console")
-      
-      this.toastr.success('Record Added Successfully');
-      this.getLedgerList()
-      
-    },(error)=>{
-       this.toastr.error("Record not added ");
+  debitTottal() {
+    this.ledgerService.getLedgerList().subscribe((result: any) => {
+      let ledgerList = result
+      for (var i = 0; i < ledgerList.length; i++) {
+        if (ledgerList[i].debit == undefined) {
+          ledgerList[i].debit = 0;
+        }
+        console.log(ledgerList[i].debit)
+        this.debitSum += ledgerList[i].debit
+      }
     })
+
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-   
-    
-  }
+  getcreditTottal() {
 
-  debitTottal(){
+    this.ledgerService.getLedgerList().subscribe((result: any) => {
+      let ledgerList = result
+      ledgerList.forEach((item: any) => {
+        if (item.amount == undefined) {
+          item.amount = 0;
+        }
 
-    this.ledgerService.getLedgerList().subscribe((result:any)=>{
-      let  ledgerList = result
-      ledgerList.forEach((item:any)=> {
-       return this.debitSum += Number(item.debit);
+        return this.creditSum += Number(item.amount);
       });
-      console.log("Sum is this:"+this.debitSum)
+      console.log("Sum is:" + this.creditSum)
     })
-
-    console.log("cons"+this.debitSum)
-  }
-  getcreditTottal(){
-
-
-    this.ledgerService.getLedgerList().subscribe((result:any)=>{
-      let  ledgerList = result
-      ledgerList.forEach((item:any)=> {
-
-       return this.creditSum += Number(item.credit);
-      });
-      console.log("Sum is this:"+this.creditSum)
-    })
-
-  
-
   }
 
-
-
-  getLedgerList(){
-    this.negitiveNumber = true;
-    this.ledgerService.getLedgerList().subscribe((result:any)=>{
+  getLedgerList() {
+    this.ledgerService.getLedgerList().subscribe((result: any) => {
       this.ledgerList = result
-      console.log(result)
+      console.log("List is" + result)
     })
-    //this.getTottal()
   }
 
 
-  deleteLedger(id:any){
-    debugger
+  deleteLedger(id: any) {
+
     this.deletedId = id
 
-    if(this.LogedInUser.role==='Manager'){
-    this.toastr.warning('You are not authorized to delete Ledger record');
-    }else{
+    if (this.LogedInUser.role === 'Manager') {
+      this.toastr.warning('You are not authorized to delete Ledger record');
+    } else {
+
       debugger
-     this.getLedgerById()
-     console.log(id)
-     this.ledgerService.deleteLedegerById(id).subscribe((result)=>{
-       console.log(result);
-       // removing debit value on delete 
-       this.debitSum = this.debitSum - this.deletedLedger.debit
-       this.creditSum = this.creditSum - this.deletedLedger.credit
-       this.toastr.success("Record deleted successfully")
-       this.getLedgerList();
-       //this.getTottal()
-     });
+      this.getLedgerById()
+      this.ledgerService.deleteLedegerById(id).subscribe((result) => {
+        console.log(result);
+        // removing debit value on delete 
+        if (this.deletedLedger.debit == undefined) {
+          this.deletedLedger.debit = 0;
+        }
+        if (this.deletedLedger.amount == undefined) {
+          this.deletedLedger.amount = 0;
+        }
+
+        this.debitSum = this.debitSum - this.deletedLedger.debit
+        this.creditSum = this.creditSum - this.deletedLedger.amount
+        this.toastr.success("Record deleted successfully")
+        this.getLedgerList();
+        
+      });
     }
 
   }
 
-  getLedgerById(){
-    
-    this.ledgerService.getLedgerById(this.deletedId).subscribe((result:any)=>{
-      // storing the edited data in variable
-      console.log("new"+result.debit)
-         this.deletedLedger = result;
+  getLedgerById() {
+
+    this.ledgerService.getLedgerById(this.deletedId).subscribe((result: any) => {
+      // storing the deleted data in variable
+      console.log("new" + result.debit)
+      this.deletedLedger = result;
 
     })
   }

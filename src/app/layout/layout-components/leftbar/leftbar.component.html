@@ -1,29 +1,21 @@
 <div id="sidebar">
-
 	<div class="client link" *ngIf="isAdmin">
 		<a (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample"
 			routerLinkActive='active'>
 			Users
-
-
 		</a>
 	</div>
 
 	<div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
 
-
 		<div class="link" routerLink="/auth/users/add" routerLinkActive='active' *ngIf="isAdmin">
 			Add User
-			<!-- <a href="" routerLink="/client/create">ADD</a> -->
-
 		</div>
 
 		<div class="link" routerLink="/auth/users/list" routerLinkActive='active' *ngIf="isAdmin">
 			List User
 
 		</div>
-
-
 	</div>
 
 	<div class="client link" *ngIf="isAdmin">
@@ -46,30 +38,19 @@
 	</div>
 
 	<div>
-		<div class="link" routerLink="/auth/ledger/add" routerLinkActive='active' >
-			Add Ledger
-
+		<div class="link" routerLink="/auth/ledger/list" routerLinkActive='active'>
+			Add/List Ledger
 		</div>
-		<div class="link" routerLink="/auth/ledger/list" routerLinkActive='active' >
-			List Ledger
-
-		</div>
-
 	</div>
 
-	
-
-	<!-- <div >
-		Role:{{LogedInUser.role}}<br>
-		Name:{{LogedInUser.name}}
-		Email:{{LogedInUser.email}}
-	</div> -->
-
-
-
-	<!-- <a (click)="onLogoutClick()">Log out</a> -->
 	<div class="log-out" (click)="onLogoutClick()">
 		Log out
 	</div>
 
 </div>
+
+<!-- <div >
+		Role:{{LogedInUser.role}}<br>
+		Name:{{LogedInUser.name}}
+		Email:{{LogedInUser.email}}
+	</div> -->

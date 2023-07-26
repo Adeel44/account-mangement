@@ -1,14 +1,14 @@
 
 <div class=" container-fluid  mt-2">
-    <form [formGroup]="ledgerForm" >
+    <form [formGroup]="ledgerForm" (ngSubmit)="createLedger()">
         <div class="row">
             <div class="col-md-6 mb-3">
               <label class="form-label" for="text">Description:</label>
-              <input type="text" class="form-control client-field" maxLength="150" id="name" formControlName="iamount"> 
+              <input type="text" class="form-control client-field" maxLength="150" id="description" formControlName="description"> 
               </div> 
               <div class="col-md-6 mb-3">
-                <label class="form-label" for="text">Credit:</label>
-                <input type="text"  class="form-control client-field"[maxLength]="150" id="amount" formControlName="amount"> 
+                <label class="form-label" for="text">Amount:</label>
+                <input type="number"  class="form-control client-field"[maxLength]="150" id="amount" formControlName="amount"> 
               </div>
               
         </div>
@@ -19,7 +19,7 @@
               </div>  -->
               <div class="col-md-6 mb-3">
                 <label class="form-label" for="text">Date:</label>
-                <input type="text"  class="form-control client-field"[maxLength]="150" id="description" formControlName="date"> 
+                <input type="date"  class="form-control client-field"[maxLength]="150" id="date" formControlName="date"> 
               </div>
               
         </div>
@@ -27,7 +27,7 @@
         
         <div class="row">
             <div class="col-md-6">
-            <button type="submit" class="btn btn-primary" [class.disabled] = "ledgerForm.invalid" (click)="createLedger()">Add</button>
+            <button type="submit" class="btn btn-primary" [class.disabled] = "ledgerForm.invalid" >Add</button>
             </div>
 
           </div>
@@ -44,25 +44,23 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let ledger of ledgerList">
-                <td>{{ledger.iamount}}</td>
-                <td>{{ledger.amount}}</td>
-                <td *ngIf="negitiveNumber ;else positive">{{ledger.amount}}</td>
-                <ng-template #positive>  <td>D</td></ng-template>
+           
 
-                <td></td>
-                <!-- <td>{{ledger.credit}}</td>
-                <td>{{ledger.debit}}</td>   -->
+            
+            <tr *ngFor="let ledger of ledgerList" >
+                <td>{{ledger.description}}</td>
+                <td >{{ledger.amount}}</td>
+                <td>{{ledger.debit}}</td>
+
                 <td>{{ledger.date}}</td>
                 <td>
                     <button type="button" class="btn btn-primary" routerLink="/auth/ledger/edit/{{ledger.id}}">Edit</button>
                     <button type="button" class="btn btn-danger btn-delete" (click)="deleteLedger(ledger.id)">Delete</button>
     
-                </td>
-    
-              
+                </td>    
     
             </tr>
+        
 
             <tr >
                 <th scope="col">Profit/Loss</th>
@@ -72,16 +70,7 @@
                 <ng-template #other_content>  <td></td></ng-template>
 
                 <th scope="col" *ngIf="creditSum>debitSum">{{creditSum-debitSum}}</th>
-                <!-- <ng-container>
-                    <th scope="col" *ngIf="debitSum>creditSum">{{debitSum-creditSum}}</th>
-
-                    
-                    <th scope="col" *ngIf="creditSum>debitSum">{{creditSum-debitSum}}
-                        Hello
-                    </th>
-
-
-                </ng-container> -->
+                
                 <th scope="col"></th>
                 <th scope="col"></th>
             </tr>
@@ -93,6 +82,7 @@
                     <ng-container>
                         <th scope="col" *ngIf="creditSum<debitSum">{{debitSum}}</th>
                         <th scope="col"  *ngIf="creditSum<debitSum">{{debitSum}}</th>
+
                         <th scope="col" *ngIf="creditSum==debitSum">{{creditSum}}</th>
                         <th scope="col"  *ngIf="creditSum==debitSum">{{debitSum}}</th>
 
@@ -100,6 +90,7 @@
                     <th scope="col"></th>
                     <th scope="col"></th>
                 </tr>
+
 
            
             
@@ -111,12 +102,13 @@
 </div>
 
 
+<!-- <pre>
+    {{find|json}}
 
+</pre>
+   -->
 
-
-
-
-  
+   
     
 
    

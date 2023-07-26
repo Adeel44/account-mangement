@@ -12,10 +12,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class EditLedgerComponent {
   editLedger:any;
   ledgerForm = new FormGroup({
-    iamount:new FormControl('', [Validators.required ]),
-   credit:new FormControl('', [Validators.required ]),
+   description:new FormControl('', [Validators.required ]),
+   amount:new FormControl('', [Validators.required ]),
    debit:new FormControl('', [Validators.required ]),
-   amount:new FormControl('', [Validators.required ])
+   date:new FormControl('', [Validators.required ])
   });
 
   constructor(private activatedRoute: ActivatedRoute, private ledgerService: LedgerService ,
@@ -31,10 +31,10 @@ export class EditLedgerComponent {
       // storing the edited data in variable
          this.editLedger = result;
 
-      this.ledgerForm.controls["iamount"].setValue(this.editLedger.iamount)
-      this.ledgerForm.controls["credit"].setValue(this.editLedger.credit)
-      this.ledgerForm.controls["debit"].setValue(this.editLedger.debit)
+      this.ledgerForm.controls["description"].setValue(this.editLedger.description)
       this.ledgerForm.controls["amount"].setValue(this.editLedger.amount)
+      this.ledgerForm.controls["debit"].setValue(this.editLedger.debit)
+      this.ledgerForm.controls["date"].setValue(this.editLedger.date)
 
     })
   }
