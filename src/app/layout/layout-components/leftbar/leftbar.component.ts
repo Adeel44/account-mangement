@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
 export class LeftbarComponent implements OnInit , DoCheck{
 
   isCollapsed = true;
+
+  isCollaps = true;
+
   
 
   LogedInUser:any;

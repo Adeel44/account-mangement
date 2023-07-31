@@ -1,9 +1,6 @@
 
 
- /* protected-data{
-    display:flex;
-    justify-content: center;
- } */
+ 
  h3{
    margin-top: 15px;
    display: flex;
@@ -13,6 +10,7 @@
 
  .main{
    height: 100%;
-   
 
  }
+
+
