@@ -1,4 +1,8 @@
 
+  
+
+  
+
 <div class=" container-fluid  mt-2">
     <form [formGroup]="ledgerForm" (ngSubmit)="createLedger()">
         <div class="row">
@@ -13,10 +17,6 @@
               
         </div>
         <div class="row">
-              <!-- <div class="col-md-6 mb-3">
-              <label class="form-label" for="text">Debit:</label>
-              <input type="text" class="form-control client-field" maxLength="150" id="name" formControlName="debit"> 
-              </div>  -->
               <div class="col-md-6 mb-3">
                 <label class="form-label" for="text">Date:</label>
                 <input type="date"  class="form-control client-field"[maxLength]="150" id="date" formControlName="date"> 
@@ -52,7 +52,7 @@
                 <td >{{ledger.amount}}</td>
                 <td>{{ledger.debit}}</td>
 
-                <td>{{ledger.date}}</td>
+                <td>{{ledger.date|date}}</td>
                 <td>
                     <button type="button" class="btn btn-primary" routerLink="/auth/ledger/edit/{{ledger.id}}">Edit</button>
                     <button type="button" class="btn btn-danger btn-delete" (click)="deleteLedger(ledger.id)">Delete</button>
@@ -102,17 +102,13 @@
 </div>
 
 
-<!-- <pre>
-    {{find|json}}
 
-</pre>
-   -->
+
 
    
     
-
    
-  
+   
 
 
    

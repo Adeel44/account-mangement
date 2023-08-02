@@ -53,7 +53,6 @@ export class LeftbarComponent implements OnInit , DoCheck{
   onLogoutClick(){
     this.router.navigate(["login"] )
 
-    //sessionStorage.removeItem('userinfo')
     sessionStorage.clear()
     
    

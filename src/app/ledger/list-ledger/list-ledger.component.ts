@@ -1,7 +1,7 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { LedgerService } from '../ledger.service';
 import { ToastrService } from 'ngx-toastr';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators , FormArray, FormBuilder } from '@angular/forms';
 import { RoleService } from 'src/app/role/role.service';
 import { ItemsList } from '@ng-select/ng-select/lib/items-list';
 
@@ -29,17 +29,12 @@ export class ListLedgerComponent implements OnInit {
   deletedId: any
   deletedLedger: any
 
-  //negitiveNumber = false
-
   constructor(private ledgerService: LedgerService, private toastr: ToastrService, private role: RoleService) {
 
   }
-
   ledgerForm = new FormGroup({
     description: new FormControl('', [Validators.required]),
     amount: new FormControl('', [Validators.required , Validators.pattern("^[0-9,-1--9]*$")]),
-
-    //debit:new FormControl(''),
     date: new FormControl(''),
 
   });
@@ -101,9 +96,7 @@ export class ListLedgerComponent implements OnInit {
     }
 
   }
-  else{
-    alert("Invalid form")
-  }
+  
 
   }
 
