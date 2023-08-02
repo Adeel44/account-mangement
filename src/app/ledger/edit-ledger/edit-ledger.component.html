@@ -1,0 +1,38 @@
+
+<div class=" container-fluid  mt-2">
+    <form [formGroup]="ledgerForm" >
+        <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label" for="text">Description:</label>
+              <input type="text" class="form-control client-field" maxLength="150" id="description" formControlName="description"> 
+              </div> 
+
+              <div class="col-md-6 mb-3">
+                <label class="form-label" for="text">Credit:</label>
+                <input type="number"  class="form-control client-field"[maxLength]="150" id="amount" formControlName="amount"> 
+              </div>
+              
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label" for="text">Debit:</label>
+              <input type="number" class="form-control client-field" maxLength="150" id="name" formControlName="debit"> 
+              </div> 
+              <div class="col-md-6 mb-3">
+                <label class="form-label" for="text">Date:</label>
+                <input type="date"  class="form-control client-field"[maxLength]="150" id="date" formControlName="date"> 
+              </div>
+              
+        </div>
+        
+        
+        <div class="row">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary" [class.disabled] = "ledgerForm.invalid" (click)="UpdateLedger()">Update</button>
+            </div>
+
+          </div>
+    </form>
+
+
+</div>

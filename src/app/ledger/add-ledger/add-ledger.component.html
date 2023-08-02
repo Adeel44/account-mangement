@@ -1,0 +1,127 @@
+
+
+
+<div class=" container-fluid  mt-2">
+  <form [formGroup]="ledgerForm" (ngSubmit)="onSubmitForm()">
+      <div class="row">
+            <div class="col-md-6 mb-3">
+            <label class="form-label" for="text">Ledger Name:</label>
+            <input type="text" class="form-control client-field" maxLength="150" id="name" formControlName="name"> 
+            </div> 
+            <!-- <div class="col-md-6 mb-3">
+              <label class="form-label" for="text">Initial Amount:</label>
+              <input type="text" class="form-control client-field" maxLength="150" id="amount" formControlName="amount"> 
+            </div>  -->
+            
+      </div>
+
+
+      
+          <table class="table border table table-bordered 2 px solid mt-2" formArrayName="quantities">
+              <tr >
+                <th colspan="2">Add Detail :</th>
+                <th width="150px"><button type="button" class="btn btn-primary" (click)="addQuantity(0)">Add Row</button></th>
+
+              </tr>
+             
+              <tr   *ngFor="let quantity of quantities().controls; let i=index" [formGroupName]="i">
+                <td>
+                  <!-- Description : -->
+                    <input type="text" formControlName="description" class="form-control text" placeholder="Enter Description">
+                </td>
+                <td>
+                    Credit:
+                    <input type="number" formControlName="credit" class="form-control">
+                </td>
+                <td>
+                  Debit:
+                  <input type="number" formControlName="debit" class="form-control">
+              </td>
+              <td>
+                Date:
+                <input type="date" formControlName="date" class="form-control">
+              </td>
+                <td>
+                    <button type="button" (click)="removeQuantity(i)" class="btn btn-danger">Remove</button>
+                    <!-- <button type="button" (click)="addQuantity()" class="btn btn-primary">Add row</button> -->
+                </td>
+              </tr>
+          </table>
+
+           
+            
+      
+      
+      
+      <div class="row">
+          <div class="col-md-6">
+          <button type="submit" class="btn btn-primary" [class.disabled] = "ledgerForm.invalid" >Save</button>
+          </div>
+
+      </div>
+  </form>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class=" container-fluid  mt-2">
+    <form [formGroup]="ledgerForm" >
+        <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label" for="text">Initial Amount:</label>
+              <input type="text" class="form-control client-field" maxLength="150" id="name" formControlName="iamount"> 
+              </div> 
+              <div class="col-md-6 mb-3">
+                <label class="form-label" for="text">Credit:</label>
+                <input type="text"  class="form-control client-field"[maxLength]="150" id="description" formControlName="credit"> 
+              </div>
+              
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label" for="text">Debit:</label>
+              <input type="text" class="form-control client-field" maxLength="150" id="name" formControlName="debit"> 
+              </div> 
+              <div class="col-md-6 mb-3">
+                <label class="form-label" for="text">Amount:</label>
+                <input type="text"  class="form-control client-field"[maxLength]="150" id="description" formControlName="amount"> 
+              </div>
+              
+        </div>
+        
+        
+        <div class="row">
+            <div class="col-md-6">
+            <button type="submit" class="btn btn-primary" [class.disabled] = "ledgerForm.invalid" (click)="createLedger()">Add</button>
+            </div>
+
+          </div>
+    </form>
+
+
+</div> -->
+
+
+
+
+
+

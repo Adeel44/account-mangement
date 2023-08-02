@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
 export class LeftbarComponent implements OnInit , DoCheck{
 
   isCollapsed = true;
+
+  isCollaps = true;
+
   
 
   LogedInUser:any;
@@ -50,7 +53,6 @@ export class LeftbarComponent implements OnInit , DoCheck{
   onLogoutClick(){
     this.router.navigate(["login"] )
 
-    //sessionStorage.removeItem('userinfo')
     sessionStorage.clear()
     
    

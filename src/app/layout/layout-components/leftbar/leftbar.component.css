@@ -4,6 +4,7 @@
     overflow: hidden;
     transition: 0.8s;
     height: calc(100vh - 92px);
+    /* height: 100vh; */
    
   
 }

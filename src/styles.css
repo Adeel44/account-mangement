@@ -8,7 +8,13 @@
 @import "~@ng-select/ng-select/themes/default.theme.css";
 @import 'ngx-toastr/toastr';
 
+html {
+	height: 100%;
+}
 
+body {
+	height: 100%;
+}
 
 .main-area{
 
@@ -23,7 +29,13 @@
 #content{
    
     width: 100%;
-    
+    /* height: calc(100vh - 92px); */
+    height: 100%;
+    display: inli100ne-block;
+    vertical-align: top;
+    overflow: auto
+
+   
  }
 
 .footer{
