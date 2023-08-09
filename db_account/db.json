@@ -61,83 +61,43 @@
   ],
   "ledger": [
     {
-      "name": "test",
-      "quantities": [
+      "name": "Account",
+      "year": 2023,
+      "ledgerquantities": [
         {
           "id": 0,
           "description": "test",
-          "credit": 6000,
-          "debit": "",
+          "credit": 50000,
+          "debit": 0,
           "date": ""
         },
         {
-          "id": 1,
+          "id": 9,
           "description": "test",
-          "credit": "",
-          "debit": 3000,
+          "credit": 0,
+          "debit": 12000,
           "date": ""
         },
         {
-          "id": 2,
+          "id": 12,
           "description": "test",
-          "credit": "",
-          "debit": 2000,
+          "credit": 0,
+          "debit": 8000,
+          "date": ""
+        },
+        {
+          "id": 13,
+          "description": "test",
+          "credit": 0,
+          "debit": 10000,
           "date": ""
         }
       ],
-      "id": 11
-    },
-    {
-      "name": "Account 2",
-      "quantities": [
-        {
-          "id": 1,
-          "description": "test",
-          "credit": 8000,
-          "debit": "",
-          "date": ""
-        },
-        {
-          "id": 2,
-          "description": "g",
-          "credit": 8000,
-          "debit": 8,
-          "date": ""
-        },
-        {
-          "id": 3,
-          "description": "g",
-          "credit": 8000,
-          "debit": 8,
-          "date": ""
-        },
-        {
-          "id": 4,
-          "description": "g",
-          "credit": 8000,
-          "debit": null,
-          "date": ""
-        }
-      ],
-      "id": 12
-    },
-    {
-      "description": "test",
-      "debit": 5000,
-      "date": null,
-      "id": 15
-    },
-    {
-      "description": "test",
-      "amount": 10000,
-      "date": "",
-      "id": 16
-    },
-    {
-      "description": "test",
-      "amount": 10000,
-      "date": null,
-      "id": 17
+      "creditSum": 50000,
+      "debitSum": 50000,
+      "loss": 0,
+      "profit": 20000,
+      "id": 18
     }
   ],
   "categories": [

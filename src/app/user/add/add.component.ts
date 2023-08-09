@@ -33,16 +33,6 @@ export class AddComponent {
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
   });
 
-  // addUser(){
-  //   console.log(this.userForm.value)
-  //   this.user_Service.createUser(this.userForm.value).subscribe((result:any)=>{
-  //     this.userForm.reset()
-  //     alert("User added ")
-  //   },(error)=>{
-  //     alert("User not added ")
-  //   })
-  // }
-
   addUser() {
 
     const emailExist = this.userList.find((data: any) => {
@@ -88,7 +78,5 @@ export class AddComponent {
       console.log(result)
     })
   }
-
-
 
 }

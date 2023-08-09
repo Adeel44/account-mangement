@@ -1,9 +1,58 @@
+<div class="container-fluid  mt-2">
+<table class="table border table table-bordered 2 px solid mt-2">
+    <thead>
+        <tr>
+            <th scope="col">Ledger Name</th>
+            <th scope="col">Year</th>
+            <th scope="col">Credit</th>
+            <th scope="col">Debit</th>
+            <th scope="col">Loss</th>
+            <th scope="col">Profit</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+       
+
+        
+        <tr *ngFor="let ledger of ledgerList">
+            <td>{{ledger.name}}</td>
+            <td>{{ledger.year}}</td>
+
+            <td >{{ledger.creditSum}}</td>
+            <td>{{ledger.debitSum}}</td>
+            <td>{{ledger.loss}}</td>
+            <td>{{ledger.profit}}</td>
+
+
+            <!-- <td>{{ledger.date|date}}</td> -->
+            <td>
+                <button type="button" class="btn btn-primary" routerLink="/auth/ledger/edit/{{ledger.id}}">Edit</button>
+                <button type="button" class="btn btn-danger btn-delete" (click)="deleteLedger(ledger.id)">Delete</button>
+
+            </td>    
+
+        </tr>
+    
+
+        
+        
+            
+
+
+       
+        
+
+    </tbody>
+</table>
+</div>
+
 
   
 
   
 
-<div class=" container-fluid  mt-2">
+<!-- <div class=" container-fluid  mt-2">
     <form [formGroup]="ledgerForm" (ngSubmit)="createLedger()">
         <div class="row">
             <div class="col-md-6 mb-3">
@@ -99,13 +148,15 @@
     </table>
 
 
-</div>
+</div> -->
+
+<pre>
+    {{ledgerList|json}}
+
+</pre>
 
 
 
-
-
-   
     
    
    

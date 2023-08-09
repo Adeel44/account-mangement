@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     LedgerRoutingModule,
     ReactiveFormsModule,
+    FormsModule
     
     
   ]
