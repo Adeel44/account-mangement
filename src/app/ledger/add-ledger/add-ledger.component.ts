@@ -46,7 +46,7 @@ export class AddLedgerComponent implements OnInit, DoCheck {
       name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]*$')]),
       year: new FormControl('', [Validators.required ,Validators.minLength(4),Validators.pattern('^[0-9]*$')]),
       ledgerquantities: this.formBuilder.array(
-        [this.createLedgerGroup()],
+        [this.createLedgerledgerQuantities()],
         [Validators.required]
       ),
       creditSum: this.formBuilder.control(['']),
@@ -112,8 +112,7 @@ export class AddLedgerComponent implements OnInit, DoCheck {
     return this.ledgerForm.get("ledgerquantities") as FormArray
   }
 
-  createLedgerGroup(): FormGroup {
-
+  createLedgerledgerQuantities(): FormGroup {
     return this.formBuilder.group({
 
       description: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -125,7 +124,7 @@ export class AddLedgerComponent implements OnInit, DoCheck {
   }
 
   addQuantity() {
-    this.quantities().push(this.createLedgerGroup());
+    this.quantities().push(this.createLedgerledgerQuantities());
   }
 
   removeRow(i: number) {
