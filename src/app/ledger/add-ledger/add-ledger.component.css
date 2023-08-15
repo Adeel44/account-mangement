@@ -1,10 +1,22 @@
 
 
-/* table {
-    table-layout: fixed;
-    width: 100%;
-  } */
 
-/* table th{
-    width: 420px;
-} */
+th{
+  text-align:center;
+}
+td{
+  text-align:center;
+
+}
+.plus{
+  margin-right: 3px;
+}
+.minus{
+  margin-left: 3px;
+}
+input{
+  text-align: center;
+}
+label{
+  font-size: 18px;
+}

@@ -1,22 +1,22 @@
 
-<div class=" container-fluid  mt-2">
+<!-- <div class=" container-fluid  mt-2">
     <form [formGroup]="ledgerForm" >
         <div class="row">
             <div class="col-md-6 mb-3">
-              <label class="form-label" for="text">Description:</label>
-              <input type="text" class="form-control client-field" maxLength="150" id="description" formControlName="description"> 
+              <label class="form-label" for="text">Ledger Name:</label>
+              <input type="text" class="form-control client-field" maxLength="150" id="name" formControlName="name"> 
               </div> 
 
               <div class="col-md-6 mb-3">
-                <label class="form-label" for="text">Credit:</label>
-                <input type="number"  class="form-control client-field"[maxLength]="150" id="amount" formControlName="amount"> 
+                <label class="form-label" for="text">Year:</label>
+                <input type="number"  class="form-control client-field"[maxLength]="150" id="year" formControlName="year"> 
               </div>
               
         </div>
         <div class="row">
             <div class="col-md-6 mb-3">
-              <label class="form-label" for="text">Debit:</label>
-              <input type="number" class="form-control client-field" maxLength="150" id="name" formControlName="debit"> 
+              <label class="form-label" for="text">Credit Sum:</label>
+              <input type="number" class="form-control client-field" maxLength="150" id="name" formControlName="creditSum"> 
               </div> 
               <div class="col-md-6 mb-3">
                 <label class="form-label" for="text">Date:</label>
@@ -24,6 +24,66 @@
               </div>
               
         </div>
+
+        <th scope="col">
+          <input type="text" formControlName="description" name="description" class="form-control">
+        </th>
+        <th scope="col" >
+          <input type="number" formControlName="credit" name="credit" class="form-control">
+        </th>
+        <th scope="col" >
+          <input type="number" formControlName="debit" name="debit" class="form-control">
+        </th>
+        <th scope="col" >
+          <input type="date" formControlName="date" name="date" class="form-control">
+        </th>
+        <br>
+        <th scope="col">
+          <input type="text" formControlName="description" name="description" class="form-control">
+        </th>
+        <th scope="col" >
+          <input type="number" formControlName="credit" name="credit" class="form-control">
+        </th>
+        <th scope="col" >
+          <input type="number" formControlName="debit" name="debit" class="form-control">
+        </th>
+
+        <th scope="col" >
+          <input type="date" formControlName="date" name="date" class="form-control">
+        </th>
+        <br>
+        <th scope="col">
+          <input type="text" formControlName="description" name="description" class="form-control">
+        </th>
+        <th scope="col" >
+          <input type="number" formControlName="credit" name="credit" class="form-control">
+        </th>
+        <th scope="col" >
+          <input type="number" formControlName="debit" name="debit" class="form-control">
+        </th>
+        <th scope="col" >
+          <input type="date" formControlName="date" name="date" class="form-control">
+        </th>
+        <br>
+
+        <th>Profit/Loss</th>
+
+        <th scope="col">
+          <input type="number" formControlName="loss" name="loss" class="form-control" readonly>
+        </th>
+        <th scope="col" >
+          <input type="number" formControlName="profit" name="profit" class="form-control" readonly>
+        </th>
+        <br>
+
+        <th>Tottal</th>
+
+        <th scope="col">
+          <input type="number" formControlName="creditSum" name="creditSum" class="form-control" readonly>
+        </th>
+        <th scope="col" >
+          <input type="number" formControlName="creditSum" name="creditSum" class="form-control" readonly>
+        </th>
         
         
         <div class="row">
@@ -35,4 +95,111 @@
     </form>
 
 
+</div> -->
+
+
+
+<div class=" container-fluid  mt-2">
+  <form [formGroup]="ledgerForm" >
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label" for="text">Ledger Name:</label>
+        <input type="text" class="form-control client-field" maxLength="150" id="name" formControlName="name">
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label" for="text">Year:</label>
+        <input type="number" class="form-control client-field" maxLength="150" id="amount" formControlName="year">
+      </div>
+    </div>
+    <table class="table border table table-bordered 2 px solid mt-2" formArrayName="ledgerquantities">
+      <tr>
+        <th colspan="2"> Ledger Record :</th>
+        <!-- <th width="150px"><button type="button" class="btn btn-primary" >Add Row</button></th> -->
+        <th>
+          <input type="number" class="form-control" >
+        </th>
+      </tr>
+
+      <tr *ngFor="let quantity of ledgerquantities; let i=index" [formGroupName]="i">
+        <td>
+          <!-- Description : -->
+          <input type="text" formControlName="description" class="form-control text" placeholder="Enter Description">
+        </td>
+        <td>
+          Credit:
+          <input type="number" formControlName="credit" class="form-control" >
+        </td>
+        <td>
+          Debit:
+          <input type="number" formControlName="debit" class="form-control" >
+        </td>
+        <td>
+          Date:
+          <input type="date" formControlName="date" class="form-control">
+        </td>
+        <!-- <td>
+          <button type="button" (click)="removeRow(i)" class="btn btn-danger">Remove</button>
+        </td> -->
+      </tr>
+    </table>
+
+    <table class="table border table table-bordered 2 px solid mt-2">
+      <tr>
+        <th>Profit/Loss</th>
+        <th >
+          <input type="number" formControlName="loss" name="loss" class="form-control" 
+            readonly>
+        </th>
+
+        <ng-template #other_content>
+          <th>{{0}}</th>
+        </ng-template>
+        <th >
+          <input type="number" formControlName="profit" name="profit" class="form-control"
+            readonly>
+
+        </th>
+
+        <th></th>
+        <th></th>
+      </tr>
+
+      <tr>
+        <th>Tottal</th>
+
+        <th scope="col" >
+          <input type="number" formControlName="creditSum" name="creditSum" class="form-control" readonly>
+        </th>
+        <th scope="col" >
+          <input type="number" formControlName="creditSum" name="creditSum" class="form-control" readonly>
+        </th>
+        <!-- <ng-container>
+          <th scope="col" *ngIf="creditSum<debitSum">
+            <input type="number" formControlName="debitSum" name="debitSum" class="form-control" readonly>
+          </th>
+          <th scope="col" *ngIf="creditSum<debitSum">
+            <input type="number" formControlName="debitSum" name="debitSum" class="form-control" readonly>
+          </th>
+
+          <th scope="col" *ngIf="creditSum==debitSum">
+            <input type="number" formControlName="creditSum" name="creditSum" class="form-control" readonly>
+          </th>
+          <th scope="col" *ngIf="creditSum==debitSum">
+            <input type="number" formControlName="debitSum" name="debitSum" class="form-control" readonly>
+          </th>
+
+        </ng-container> -->
+
+        <th></th>
+        <th></th>
+      </tr>
+    </table>
+
+    <div class="row">
+      <div class="col-md-6">
+        <button type="submit" class="btn btn-primary" [class.disabled]="ledgerForm.invalid" (click)="UpdateLedger()">Update</button>
+      </div>
+
+    </div>
+  </form>
 </div>

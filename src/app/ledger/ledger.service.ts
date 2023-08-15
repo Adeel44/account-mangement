@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ILedger } from './models/ILedger';
 
 
 @Injectable({
@@ -11,14 +12,14 @@ export class LedgerService {
   constructor( private http:HttpClient) { }
 
   getLedgerList(){
-    return this.http.get(this.baseURL)
+    return this.http.get<ILedger[]>(this.baseURL)
 
   }
-  deleteLedegerById(id:any){
-    return this.http.delete(`${this.baseURL}/${id}`)
+  deleteLedegerById(id:any) {
+    return this.http.delete<ILedger>(`${this.baseURL}/${id}`)
   }
-  createLedger(data:any){
-    return this.http.post(this.baseURL, data)
+  createLedger(Ledger:ILedger){
+    return this.http.post<ILedger>(this.baseURL, Ledger)
   }
   getLedgerById(id:any){
     return this.http.get(`${this.baseURL}/${id}`)

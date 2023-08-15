@@ -61,43 +61,62 @@
   ],
   "ledger": [
     {
-      "name": "Account",
+      "name": "Book Shop",
       "year": 2023,
       "ledgerquantities": [
         {
-          "id": 0,
           "description": "test",
-          "credit": 50000,
+          "credit": "40000",
           "debit": 0,
-          "date": ""
+          "date": "2023-08-15"
         },
         {
-          "id": 9,
           "description": "test",
           "credit": 0,
-          "debit": 12000,
-          "date": ""
+          "debit": "5000",
+          "date": "2023-08-15"
         },
         {
-          "id": 12,
           "description": "test",
           "credit": 0,
-          "debit": 8000,
-          "date": ""
-        },
-        {
-          "id": 13,
-          "description": "test",
-          "credit": 0,
-          "debit": 10000,
-          "date": ""
+          "debit": "12000",
+          "date": "2023-08-15"
         }
       ],
-      "creditSum": 50000,
-      "debitSum": 50000,
+      "creditSum": 40000,
+      "debitSum": 40000,
       "loss": 0,
-      "profit": 20000,
-      "id": 18
+      "profit": 23000,
+      "id": 4
+    },
+    {
+      "name": "test",
+      "year": 2023,
+      "ledgerquantities": [
+        {
+          "description": "test",
+          "credit": "60000",
+          "debit": 0,
+          "date": "2023-08-15"
+        },
+        {
+          "description": "test",
+          "credit": 0,
+          "debit": "8000",
+          "date": "2023-08-15"
+        },
+        {
+          "description": "test",
+          "credit": 0,
+          "debit": "8000",
+          "date": "2023-08-15"
+        }
+      ],
+      "creditSum": 60000,
+      "debitSum": 60000,
+      "loss": 0,
+      "profit": 44000,
+      "id": 7
     }
   ],
   "categories": [
