@@ -44,7 +44,7 @@ export class AddLedgerComponent implements OnInit, DoCheck {
   ngOnInit(): void {
     this.ledgerForm = this.formBuilder.group({
       name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]*$')]),
-      year: new FormControl('', [Validators.required ,Validators.minLength(4),Validators.pattern('^[0-9]*$')]),
+      year: new FormControl('', [Validators.required, Validators.minLength(4), Validators.pattern('^[0-9]*$')]),
       ledgerquantities: this.formBuilder.array(
         [this.createLedgerledgerQuantities()],
         [Validators.required]
@@ -102,7 +102,7 @@ export class AddLedgerComponent implements OnInit, DoCheck {
       // patching the value of total control
       this.ledgerForm.get('debitSum')?.patchValue(
         newValue.reduce((total: any, item: any) => {
-          return this.debitSum = total +  Number(item.debit)
+          return this.debitSum = total + Number(item.debit)
         }, 0)
       )
     })

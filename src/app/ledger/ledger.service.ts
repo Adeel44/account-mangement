@@ -22,13 +22,12 @@ export class LedgerService {
     return this.http.post<ILedger>(this.baseURL, Ledger)
   }
   getLedgerById(id:any){
-    return this.http.get(`${this.baseURL}/${id}`)
-    //return this.http.get(this.baseURL+'/'+id)
-
+    return this.http.get<ILedger>(`${this.baseURL}/${id}`)
+   
   }
   
-  UpdateLedgerDetail(id:any , data:any){
-    return this.http.put(`${this.baseURL}/${id}`,data)
+  UpdateLedgerDetail(id:any , data:ILedger){
+    return this.http.put<ILedger>(`${this.baseURL}/${id}`,data)
     
   }
 

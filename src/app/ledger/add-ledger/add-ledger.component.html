@@ -123,7 +123,7 @@
           </th>
           <ng-template #other_content>
             <th>
-              <input type="text" value="0" class="form-control">
+              <input type="text" value="0" class="form-control" [readOnly]="true">
             </th>
           </ng-template>
           <th *ngIf="creditSum>debitSum ;else other_content">
@@ -136,10 +136,10 @@
         <tr>
           <th>Tottal</th>
           <th>
-            <input type="number" formControlName="creditSum" name="creditSum" class="form-control" readonly>
+            <input type="number" formControlName="creditSum" name="creditSum" class="form-control" readonly >
           </th>
           <th>
-            <input type="number" formControlName="creditSum" name="creditSum" class="form-control" readonly>
+            <input type="number" formControlName="debitSum" name="debitSum" class="form-control" readonly >
           </th>
           <th></th>
           <th></th>

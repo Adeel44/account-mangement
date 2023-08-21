@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LedgerService } from '../ledger.service';
 import { ToastrService } from 'ngx-toastr';
 import { ILedger } from '../models/ILedger';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class ListLedgerComponent implements OnInit {
   ledgerList!: ILedger[];
   LogedInUser: any
 
-  constructor(private ledgerService: LedgerService, private toastr: ToastrService) {
+  constructor(private ledgerService: LedgerService, private toastr: ToastrService ,private router:Router) {
   }
   ngOnInit(): void {
 
@@ -39,8 +40,12 @@ export class ListLedgerComponent implements OnInit {
       }
     })
   }
+  onEditClick(id:number){
+    this.router.navigate(["/auth/ledger/edit/"+id])
+  }
 
   deleteLedger(id: number) {
+    debugger
     if (this.LogedInUser.role === 'Manager') {
       this.toastr.warning('You are not authorized to delete Ledger record');
     } else {

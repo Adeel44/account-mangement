@@ -3,72 +3,105 @@
     <div class="row">
       <div class="col-md-6 mb-3">
         <label class="form-label" for="text">Name:</label>
-        <input type="text" class="form-control client-field" maxLength="150" id="name" formControlName="name">
+        <input type="text" class="form-control client-field" maxLength="150" id="name" formControlName="name"
+        [class.is-invalid]="f['name'].invalid && f['name'].touched ">
+              <div class="invalid-feedback mt-0" *ngIf="f['name'].invalid && f['name'].touched ">
+                <div *ngIf="f['name'].errors && f['name'].errors['required']">
+                  Name is required
+                </div>
+                <div *ngIf="f['name'].errors && f['name'].errors['minlength']">
+                  Minimum 3 character is rquired
+                </div>
+                <div *ngIf="f['name'].errors  && f['name'].errors['pattern']">
+                  Only character is allowed
+                </div>
+              </div>
       </div>
       <div class="col-md-6 mb-3">
         <label class="form-label" for="text">Description:</label>
-        <input type="text" class="form-control client-field" [maxLength]="150" id="description"
-          formControlName="description">
+        <input type="text" class="form-control client-field" [maxLength]="150" id="description" formControlName="description"
+        [class.is-invalid]="f['description'].invalid && f['description'].touched ">
+                <div class="invalid-feedback mt-0" *ngIf="f['description'].invalid && f['description'].touched ">
+                  <div *ngIf="f['description'].errors && f['description'].errors['required']">
+                    description is required
+                  </div>
+                  <div *ngIf="f['description'].errors && f['description'].errors['minlength']">
+                    Minimum 3 character is rquired
+                  </div>
+                  <div *ngIf="f['description'].errors  && f['description'].errors['pattern']">
+                    Only character is allowed
+                  </div>
+                </div>
       </div>
       <div class="col-md-6 mb-3">
         <label class="form-label" for="text">Role:</label>
-        <!-- <input type="text" class="form-control client-field" [maxLength]="150" id="role" formControlName="role"  > -->
 
-        <ng-select  [items]="roleList"   formControlName="role" bindLabel="name" bindValue="name">
-  
-
+        <ng-select  [items]="roleList"   formControlName="role" bindLabel="name" bindValue="name" required touched
+        [class.is-invalid]="f['role'].invalid && f['role'].touched ">
           <ng-option *ngFor="let role of roleList">
               {{role.name}}
 
           </ng-option>
-
-
         </ng-select>
-
-
-        
-
-
-
-       
-
-        
-        <!-- <label  class="form-label" for="language">Role:</label> <br>
-        <select  name="language" id="language"  id="role" formControlName="role">
-          <option value="Admin">Admin</option>
-          <option value="Manger">Manger</option>
-          <option value="User">User</option>
-          
-          
-        </select> -->
+        <div class="invalid-feedback mt-0" *ngIf="f['role'].invalid && f['role'].touched ">
+          <div *ngIf="f['role'].errors && f['role'].errors['required']">
+            Role is required
+          </div>
+        </div>
 
       </div>
       <div class="col-md-6 mb-3">
         <label class="form-label" for="text">Email:</label>
-        <input type="text" class="form-control client-field" [maxLength]="150" id="email" formControlName="email" required="">
+        <input type="text" class="form-control client-field" [maxLength]="150" id="email" formControlName="email" required=""
+        [class.is-invalid]="f['email'].invalid && f['email'].touched ">
+        <div class="invalid-feedback mt-0" *ngIf="f['email'].invalid && f['email'].touched ">
+          <div *ngIf="f['email'].errors && f['email'].errors['required']">
+            Email is required
+          </div>
+          <div *ngIf="f['email'].errors  && f['email'].errors['email']">
+            Valid email required
+          </div>
+        </div>
+        
       </div>
       <div class="col-md-6 mb-3">
         <label class="form-label" for="text">Contact Number:</label>
-        <input type="text" class="form-control client-field" [maxLength]="150" id="number" formControlName="number">
+        <input type="text" class="form-control client-field" [maxLength]="150" id="number" formControlName="number"
+        [class.is-invalid]="f['number'].invalid && f['number'].touched ">
+        <div class="invalid-feedback mt-0" *ngIf="f['number'].invalid && f['number'].touched ">
+          <div *ngIf="f['number'].errors && f['number'].errors['required']">
+            Contact number is required
+          </div>
+          <div *ngIf="f['number'].errors && f['number'].errors['minlength']">
+            Minimum 6 digit is rquired
+          </div>
+          <div *ngIf="f['number'].errors  && f['number'].errors['pattern']">
+            Only Number is allowed
+          </div>
+        </div>
       </div>
 
       <div class="col-md-6 mb-3">
         <label class="form-label" for="text">Password:</label>
-        <input type="text" class="form-control client-field" [maxLength]="150" id="password" formControlName="password">
+        <input type="text" class="form-control client-field" [maxLength]="150" id="password" formControlName="password"
+        [class.is-invalid]="f['password'].invalid && f['password'].touched ">
+        <div class="invalid-feedback mt-0" *ngIf="f['password'].invalid && f['password'].touched ">
+          <div *ngIf="f['password'].errors && f['password'].errors['required']">
+            Password is required
+          </div>
+          <div *ngIf="f['password'].errors && f['password'].errors['minlength']">
+            Minimum 6 digit is rquired
+          </div>
+        </div>
       </div>
 
       <div class="row">
         <div class="col-md-6">
           <button type="submit" class="btn btn-primary" [class.disabled]="userForm.invalid"
             (click)="addUser()">Add</button>
-
-
         </div>
 
       </div>
-
-
-
     </div>
   </form>
 

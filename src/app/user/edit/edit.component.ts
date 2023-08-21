@@ -18,11 +18,12 @@ export class EditComponent implements OnInit{
   roleList:any;
 
   userForm = new FormGroup({
-    name:new FormControl('', [Validators.required ]),
-    description:new FormControl(''),
+    name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]*$')]),
+    description: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]*$')]),
     role:new FormControl('', [Validators.required ]),
-    email:new FormControl('', [Validators.required ]),
-    number:new FormControl('', [Validators.required ]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    number: new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern('^[0-9]*$')]),
+    
     
   });
 
@@ -44,6 +45,8 @@ export class EditComponent implements OnInit{
       this.userForm.controls["email"].setValue(this.editUser.email)
       this.userForm.controls["number"].setValue(this.editUser.number)
 
+    },(e)=>{
+      this.router.navigate(["/auth/users/list"])
     })
 
     this.getRoleList()
@@ -60,6 +63,9 @@ export class EditComponent implements OnInit{
       this.router.navigateByUrl('/auth/users/list');
     })
 
+  }
+  get f() {
+    return this.userForm.controls;
   }
 
   getRoleList(){

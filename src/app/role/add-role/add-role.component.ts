@@ -16,9 +16,13 @@ export class AddRoleComponent {
 
   roleForm = new FormGroup({
    /// id:new FormControl(''),
-    name:new FormControl('', [Validators.required ]),
-    description:new FormControl(''),
+    name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]*$')]),
+    description:new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]),
   });
+  get f() {
+    return this.roleForm.controls;
+  }
+
 
   createRole(){
     console.log(this.roleForm.value)

@@ -25,15 +25,16 @@ export class AddComponent {
 
   userForm = new FormGroup({
     /// id:new FormControl(''),
-    name: new FormControl('', [Validators.required]),
-    description: new FormControl(''),
+    name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]*$')]),
+    description: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]*$')]),
     role: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    number: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    number: new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern('^[0-9]*$')]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
   });
 
   addUser() {
+    
 
     const emailExist = this.userList.find((data: any) => {
       return data.email === this.userForm.value.email
@@ -70,6 +71,9 @@ export class AddComponent {
       console.log("user list" + res)
     })
 
+  }
+  get f() {
+    return this.userForm.controls;
   }
 
   getRoleList() {

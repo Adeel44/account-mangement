@@ -13,8 +13,8 @@ export class EditRoleComponent {
 
   editRole:any;
   roleForm = new FormGroup({
-    name:new FormControl('', [Validators.required ]),
-    description:new FormControl(''),
+    name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]*$')]),
+    description:new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]),
   });
 
   constructor(private activatedRoute: ActivatedRoute, private roleService: RoleService ,
@@ -32,6 +32,8 @@ export class EditRoleComponent {
       this.roleForm.controls["name"].setValue(this.editRole.name)
       this.roleForm.controls["description"].setValue(this.editRole.description)
 
+    },(error)=>{
+      this.router.navigate(["/auth/role/list"])
     })
   }
   UpdateRole(){
@@ -43,6 +45,9 @@ export class EditRoleComponent {
       this.router.navigateByUrl('/auth/role/list');
     })
 
+  }
+  get f() {
+    return this.roleForm.controls;
   }
 
 }

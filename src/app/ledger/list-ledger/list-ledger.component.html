@@ -4,10 +4,10 @@
             <tr>
                 <th>Ledger Name</th>
                 <th>Year</th>
-                <th>Tottal Credit</th>
-                <th>Tottal Debit</th>
-                <th>Loss</th>
-                <th>Profit</th>
+                <!-- <th>Tottal Credit</th>
+                <th>Tottal Debit</th> -->
+                <!-- <th>Loss</th> -->
+                <th>Ballance</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -16,13 +16,14 @@
             <tr *ngFor="let ledger of ledgerList">
                 <td>{{ledger.name}}</td>
                 <td>{{ledger.year}}</td>
-                <td>{{ledger.creditSum}}</td>
-                <td>{{ledger.debitSum}}</td>
-                <td>{{ledger.loss}}</td>
-                <td>{{ledger.profit}}</td>
+                <!-- <td>{{ledger.creditSum}}</td>
+                <td>{{ledger.debitSum}}</td> -->
+                <!-- <td>{{ledger.loss}}</td> -->
+                <td *ngIf="ledger.profit==0 && ledger.loss== 0">{{ledger.profit}}</td>
+                <td *ngIf="ledger.profit>0">{{"+"+ledger.profit}}</td>
+                <td *ngIf="ledger.loss>0">{{"-"+ledger.loss}}</td>
                 <td>
-                    <button type="button" class="btn btn-primary"
-                        routerLink="/auth/ledger/edit/">Edit</button>
+                    <button type="button" class="btn btn-primary" (click)="onEditClick(ledger.id)">Edit</button>
                     <button type="button" class="btn btn-danger btn-delete"
                         (click)="deleteLedger(ledger.id)">Delete</button>
                 </td>
