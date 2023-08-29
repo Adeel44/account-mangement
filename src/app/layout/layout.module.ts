@@ -7,9 +7,6 @@ import { RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
-
-
-
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -20,8 +17,7 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule,
     RouterModule,
-    NgbCollapseModule
-    // LayoutRoutingModule
+    NgbCollapseModule,
   ],
   exports: [
     HeaderComponent,

@@ -1,53 +1,84 @@
 <div id="sidebar">
-	<div class="client link" *ngIf="isAdmin">
-		<a (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample"
-			routerLinkActive='active'>
-			Users
-		</a>
-	</div>
+  <div class="left-header">
+    <div class="logo img-fluid">
+      <img src="../assets/images/DoDocs_Logo (1).png" />
+    </div>
+  </div>
 
-	<div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+  <div class="left-headermain">
+    <div class="client link" *ngIf="isAdmin" (click)="collapse.toggle()">
+      <a
+        
+        [attr.aria-expanded]="!isCollapsed"
+        aria-controls="collapseExample"
+        routerLinkActive="active"
+      >
+        Users
+      </a>
+    </div>
 
-		<div class="link" routerLink="/auth/users/add" routerLinkActive='active' *ngIf="isAdmin">
-			Add User
-		</div>
+    <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+      <div
+        class="link"
+        routerLink="/auth/users/add"
+        routerLinkActive="active"
+        *ngIf="isAdmin"
+      >
+        Add User
+      </div>
 
-		<div class="link" routerLink="/auth/users/list" routerLinkActive='active' *ngIf="isAdmin">
-			List User
+      <div
+        class="link"
+        routerLink="/auth/users/list"
+        routerLinkActive="active"
+        *ngIf="isAdmin"
+      >
+        List User
+      </div>
+    </div>
 
-		</div>
-	</div>
+    <div class="client link" *ngIf="isAdmin" (click)="coll.toggle()">
+      <a
+        [attr.aria-expanded]="!isCollaps"
+        aria-controls="collapseExample"
+        routerLinkActive="active"
+      >
+        Role
+      </a>
+    </div>
 
-	<div class="client link" *ngIf="isAdmin">
-		<a (click)="coll.toggle()" [attr.aria-expanded]="!isCollaps" aria-controls="collapseExample"
-			routerLinkActive='active'>
-			Role
-		</a>
-	</div>
-
-	<div #coll="ngbCollapse" [(ngbCollapse)]="isCollaps">
-		<div class="link" routerLink="/auth/role/add" routerLinkActive='active' *ngIf="isAdmin">
-			Add Role
-
-		</div>
-		<div class="link" routerLink="/auth/role/list" routerLinkActive='active' *ngIf="isAdmin">
-			List Role
-
-		</div>
-
-	</div>
-	<div>
-		<div class="link" routerLink="/auth/ledger/add" routerLinkActive='active'>
-			Add Ledger
-		</div>
-	</div>
-	<div>
-		<div class="link" routerLink="/auth/ledger/list" routerLinkActive='active'>
-			List Ledger
-		</div>
-	</div>
-	<div class="log-out" (click)="onLogoutClick()">
-		Log out
-	</div>
-
+    <div #coll="ngbCollapse" [(ngbCollapse)]="isCollaps">
+      <div
+        class="link"
+        routerLink="/auth/role/add"
+        routerLinkActive="active"
+        *ngIf="isAdmin"
+      >
+        Add Role
+      </div>
+      <div
+        class="link"
+        routerLink="/auth/role/list"
+        routerLinkActive="active"
+        *ngIf="isAdmin"
+      >
+        List Role
+      </div>
+    </div>
+    <div *ngIf="isAdmin">
+      <div class="link" routerLink="/auth/ledger/add" routerLinkActive="active">
+        Add Ledger
+      </div>
+    </div>
+    <div *ngIf="isAdmin">
+      <div
+        class="link"
+        routerLink="/auth/ledger/list"
+        routerLinkActive="active"
+      >
+        List Ledger
+      </div>
+    </div>
+    <div class="log-out" (click)="onLogoutClick()">Log out</div>
+  </div>
 </div>

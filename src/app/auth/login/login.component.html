@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <form [formGroup]="LoginForm" (ngSubmit)="authenticateLogin()">
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            placeholder="Enter Email"
+            formControlName="email"
+            [class.is-invalid]="
+              LoginFormControls['email'].invalid &&
+              LoginFormControls['email'].touched
+            "
+          />
+          <div
+            class="invalid-feedback mt-0"
+            *ngIf="
+              LoginFormControls['email'].invalid &&
+              LoginFormControls['email'].touched
+            "
+          >
+            <div
+              *ngIf="
+                LoginFormControls['email'].errors &&
+                LoginFormControls['email'].errors['required']
+              "
+            >
+              Email is required
+            </div>
+            <div
+              *ngIf="
+                LoginFormControls['email'].errors &&
+                LoginFormControls['email'].errors['email']
+              "
+            >
+              Email is not valid
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Enter password"
+            formControlName="password"
+            [class.is-invalid]="
+              LoginFormControls['password'].invalid &&
+              LoginFormControls['password'].touched
+            "
+          />
+          <div
+            class="invalid-feedback mt-0"
+            *ngIf="
+              LoginFormControls['password'].invalid &&
+              LoginFormControls['password'].touched
+            "
+          >
+            <div
+              *ngIf="
+                LoginFormControls['password'].errors &&
+                LoginFormControls['password'].errors['required']
+              "
+            >
+              password is required
+            </div>
+
+            <div
+              *ngIf="
+                LoginFormControls['password'].errors &&
+                LoginFormControls['password'].errors['minlength']
+              "
+            >
+              Minimum 6 digit is rquired
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [class.disabled]="LoginForm.invalid"
+        >
+          Log in
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

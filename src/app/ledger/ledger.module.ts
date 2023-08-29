@@ -6,6 +6,8 @@ import { AddLedgerComponent } from './add-ledger/add-ledger.component';
 import { ListLedgerComponent } from './list-ledger/list-ledger.component';
 import { EditLedgerComponent } from './edit-ledger/edit-ledger.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CalendarModule } from "primeng/calendar";
+
 
 
 @NgModule({
@@ -18,7 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     LedgerRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    CalendarModule
     
     
   ]

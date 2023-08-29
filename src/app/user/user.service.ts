@@ -1,55 +1,42 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-
-
+import { IUser } from './model/IUser';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  //isLoggedIn = false;
-  LogedInUser:any
-
-  baseURL = "http://localhost:3000/user"
-
-  constructor( private http:HttpClient , private router:Router) { 
-   
-
-    this.LogedInUser= sessionStorage.getItem('userInfo');
-    this.LogedInUser= JSON.parse(this.LogedInUser)
-    //console.log("CanI"+ this.LogedInUser.email)
-  }
-
+  LogedInUser: any;
+  isLoggedIn=false;
   
-
-  getUserList(){
-    return this.http.get("http://localhost:3000/user")
-
+  baseURL = 'http://localhost:3000/user';
+  constructor(private http: HttpClient) {
+    this.LogedInUser = sessionStorage.getItem('userInfo');
+    this.LogedInUser = JSON.parse(this.LogedInUser);
   }
-  deleteUserById(id:any){
-    return this.http.delete(`${this.baseURL}/${id}`)
+  getUserList() {
+    return this.http.get<IUser[]>('http://localhost:3000/user');
   }
-  createUser(data:any){
-    return this.http.post("http://localhost:3000/user", data)
+  deleteUserById(id: string) {
+    return this.http.delete<IUser>(`${this.baseURL}/${id}`);
   }
-  getUserById(id:any){
-    return this.http.get(`${this.baseURL}/${id}`)
+  createUser(data: IUser) {
+    return this.http.post<IUser>('http://localhost:3000/user', data);
+  }
+  getUserById(id: any) {
+    return this.http.get<IUser>(`${this.baseURL}/${id}`);
+  }
+  UpdateUserDetail(id: any, user: IUser) {
+    return this.http.put<IUser>(`${this.baseURL}/${id}`, user);
+  }
+  isLogged() {
+    return this.LogedInUser?.email != null;
+  }
+  getRole() {
+    return this.LogedInUser.role;
+  }
+  authenticate() {
+    return this.http.get<any>('http://localhost:3000/user');
   }
   
-  UpdateUserDetail(id:any , data:any){
-    return this.http.put(`${this.baseURL}/${id}`,data)
-
-  }
-
-
-  isLogged(){
-   
-    return   this.LogedInUser?.email != null
-    
-  }
-
-  getRole(){
-    return this.LogedInUser.role
-
-  }
 }
+

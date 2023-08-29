@@ -10,23 +10,6 @@
       "id": "-EKQOyW"
     },
     {
-      "name": "Naveed",
-      "description": "test",
-      "role": "User",
-      "email": "naveed@gmail.com",
-      "number": "2222222",
-      "id": "dun9hVZ"
-    },
-    {
-      "name": "Zain",
-      "description": "test client",
-      "role": "Student",
-      "email": "zain@gmail.com",
-      "number": "111222",
-      "password": "111222",
-      "id": "0Uuh7P3"
-    },
-    {
       "name": "Rana",
       "description": "test",
       "role": "Manager",
@@ -34,6 +17,15 @@
       "number": "111222",
       "password": "111222",
       "id": "Yt0afGJ"
+    },
+    {
+      "name": "Zain",
+      "description": "test",
+      "role": "User",
+      "email": "zain@gmail.com",
+      "number": "11111111",
+      "password": "111222",
+      "id": "zD2gtwx"
     }
   ],
   "role": [
@@ -51,193 +43,130 @@
       "name": "Manager",
       "description": "test",
       "id": "Y7asujD"
-    },
-    {
-      "name": "Student",
-      "description": "test",
-      "id": "hJ0goyb"
     }
   ],
   "ledger": [
     {
-      "name": "Account ",
-      "year": "2023",
-      "creditSum": 60000,
-      "debitSum": 60000,
+      "name": "test g",
+      "year": 2022,
+      "creditSum": 40000,
+      "debitSum": 40000,
       "loss": 0,
-      "profit": 48000,
-      "ledgerquantities": [
-        {
-          "description": "444",
-          "credit": "60000",
-          "debit": 0,
-          "date": "2023-08-15"
-        },
-        {
-          "description": "test",
-          "credit": 0,
-          "debit": "6000",
-          "date": "2023-08-15"
-        },
-        {
-          "description": "test",
-          "credit": 0,
-          "debit": "6000",
-          "date": "2023-08-15"
-        }
-      ],
-      "id": 8
-    },
-    {
-      "name": "test updated",
-      "year": "10000",
-      "creditSum": 80000,
-      "debitSum": 80000,
-      "loss": 0,
-      "profit": 10000,
+      "profit": 20000,
       "ledgerquantities": [
         {
           "description": "test",
           "credit": "40000",
           "debit": 0,
           "date": "2023-08-16"
-        },
-        {
-          "description": "testtest",
-          "credit": "40000",
-          "debit": 0,
-          "date": "2023-08-16"
-        },
-        {
-          "description": "test",
-          "credit": 0,
-          "debit": "30000",
-          "date": "2023-08-15"
-        },
-        {
-          "description": "test",
-          "credit": 0,
-          "debit": "20000",
-          "date": "2023-08-16"
-        },
-        {
-          "description": "test",
-          "credit": 0,
-          "debit": "20000",
-          "date": "2023-08-17"
-        }
-      ],
-      "id": 12
-    },
-    {
-      "name": "Shop is updated",
-      "year": "2023",
-      "creditSum": 70000,
-      "debitSum": 70000,
-      "loss": 0,
-      "profit": 0,
-      "ledgerquantities": [
-        {
-          "description": "test",
-          "credit": "40000",
-          "debit": 0,
-          "date": "2023-08-17"
-        },
-        {
-          "description": "test chk",
-          "credit": "30000",
-          "debit": 0,
-          "date": "2023-08-17"
-        },
-        {
-          "description": "test",
-          "credit": 0,
-          "debit": "70000",
-          "date": "2023-08-17"
-        }
-      ],
-      "id": 13
-    },
-    {
-      "name": "Test",
-      "year": "2023",
-      "creditSum": 70000,
-      "debitSum": 70000,
-      "loss": 40000,
-      "profit": 0,
-      "ledgerquantities": [
-        {
-          "description": "test",
-          "credit": "30000",
-          "debit": 0,
-          "date": "2023-08-17"
-        },
-        {
-          "description": "loss",
-          "credit": 0,
-          "debit": "70000",
-          "date": "2023-08-17"
-        }
-      ],
-      "id": 14
-    },
-    {
-      "name": "Account",
-      "year": "2023",
-      "creditSum": 30000,
-      "debitSum": 30000,
-      "loss": 10000,
-      "profit": 0,
-      "ledgerquantities": [
-        {
-          "description": "test",
-          "credit": "20000",
-          "debit": 0,
-          "date": "2023-08-17"
-        },
-        {
-          "description": "test",
-          "credit": 0,
-          "debit": "20000",
-          "date": "2023-08-17"
         },
         {
           "description": "test",
           "credit": 0,
           "debit": "10000",
-          "date": "2023-08-17"
+          "date": "2023-08-22"
+        },
+        {
+          "description": "test",
+          "credit": 0,
+          "debit": "10000",
+          "date": "2023-08-08"
         }
       ],
-      "id": 15
+      "id": 1
     },
     {
-      "name": "test",
-      "year": "2023",
+      "name": "test updated",
+      "year": 2021,
+      "creditSum": 50000,
+      "debitSum": 50000,
+      "loss": 0,
+      "profit": 42000,
       "ledgerquantities": [
         {
           "description": "test",
           "credit": "50000",
           "debit": 0,
-          "date": "2023-08-18"
+          "date": "2023-08-16"
         },
         {
           "description": "test",
           "credit": 0,
-          "debit": "30000",
-          "date": "2023-08-18"
+          "debit": "4000",
+          "date": "2023-08-09"
         },
         {
           "description": "test",
           "credit": 0,
-          "debit": "30000",
-          "date": "2023-08-18"
+          "debit": "4000",
+          "date": "2023-07-31"
         }
       ],
-      "creditSum": 60000,
-      "debitSum": 60000,
-      "loss": 10000,
-      "profit": 0,
-      "id": 17
+      "id": 2
+    },
+    {
+      "name": "Book Shop",
+      "year": 2022,
+      "creditSum": 50000,
+      "debitSum": 50000,
+      "loss": 0,
+      "profit": 39000,
+      "ledgerquantities": [
+        {
+          "description": "test",
+          "credit": "50000",
+          "debit": 0,
+          "date": "2023-08-23"
+        },
+        {
+          "description": "test",
+          "credit": 0,
+          "debit": "1000",
+          "date": "2023-08-10"
+        },
+        {
+          "description": "test",
+          "credit": 0,
+          "debit": "10000",
+          "date": "2023-08-16"
+        }
+      ],
+      "id": 3
+    },
+    {
+      "name": "Account",
+      "year": 2020,
+      "creditSum": 50000,
+      "debitSum": 50000,
+      "loss": 0,
+      "profit": 20000,
+      "ledgerquantities": [
+        {
+          "description": "test",
+          "credit": "50000",
+          "debit": 0,
+          "date": "2023-08-03"
+        },
+        {
+          "description": "test",
+          "credit": 0,
+          "debit": "10000",
+          "date": "2023-08-22"
+        },
+        {
+          "description": "test",
+          "credit": 0,
+          "debit": "10000",
+          "date": "2023-08-22"
+        },
+        {
+          "description": "test",
+          "credit": 0,
+          "debit": "10000",
+          "date": "2023-08-22"
+        }
+      ],
+      "id": 4
     }
   ],
   "categories": [
