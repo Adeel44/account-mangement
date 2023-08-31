@@ -1,0 +1,50 @@
+.header {
+    background-color: #FFFFFF;
+   
+    
+    align-items: center;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+
+#header-right {
+    margin-left: auto;
+    margin-right: 42px;
+}
+
+
+
+ul{
+    width: 100%;
+}
+.nav-link:hover{
+    color: #2263AE;
+}
+
+
+.nav-link {
+    margin-left: 40px;
+    color: #2263AE;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+
+    letter-spacing: 0.15px;
+
+}
+
+.nav-link:hover{
+    color: #2263AE;
+    cursor: pointer;
+}
+
+.nave-img {
+    margin-right: 8px;
+}
+
+
+
+

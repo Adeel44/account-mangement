@@ -1,38 +1,18 @@
 <div class="main">
-
-
-<app-header> </app-header>
-<div class="main-area">
-    <app-leftbar></app-leftbar>
-  
+  <div class="main-area">
+    <div class="sidebar">
+      <app-leftbar></app-leftbar>
+    </div>
     <div id="content">
-      
+      <app-header> </app-header>
       <router-outlet *ngIf="isAdmin == false"></router-outlet>
 
       <div *ngIf="isAdmin" class="protected-data">
-        <div >
+        <div>
           <h3>You are not autherized to view the Protected data</h3>
-
         </div>
-
-      
-
       </div>
-      
-
-      
-  
+      <app-footer></app-footer>
     </div>
-
-  
   </div>
-
-
-<app-footer></app-footer>
 </div>
-
-
-
- 
-     
-    

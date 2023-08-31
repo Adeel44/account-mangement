@@ -1,76 +1,265 @@
-<div class=" container-fluid  mt-2">
+<div class="container-fluid mt-2">
   <form [formGroup]="userForm">
     <div class="row">
       <div class="col-md-6 mb-3">
         <label class="form-label" for="text">Name:</label>
-        <input type="text" class="form-control client-field" maxLength="150" id="name" formControlName="name">
+        <input
+          type="text"
+          class="form-control client-field"
+          maxLength="150"
+          id="name"
+          formControlName="name"
+          [class.is-invalid]="
+            userFormControls['name'].invalid && userFormControls['name'].touched
+          "
+        />
+        <div
+          class="invalid-feedback mt-0"
+          *ngIf="
+            userFormControls['name'].invalid && userFormControls['name'].touched
+          "
+        >
+          <div
+            *ngIf="
+              userFormControls['name'].errors &&
+              userFormControls['name'].errors['required']
+            "
+          >
+            Name is required
+          </div>
+          <div
+            *ngIf="
+              userFormControls['name'].errors &&
+              userFormControls['name'].errors['minlength']
+            "
+          >
+            Minimum 3 character is rquired
+          </div>
+          <div
+            *ngIf="
+              userFormControls['name'].errors &&
+              userFormControls['name'].errors['pattern']
+            "
+          >
+            Only character is allowed
+          </div>
+        </div>
       </div>
       <div class="col-md-6 mb-3">
         <label class="form-label" for="text">Description:</label>
-        <input type="text" class="form-control client-field" [maxLength]="150" id="description"
-          formControlName="description">
+        <input
+          type="text"
+          class="form-control client-field"
+          [maxLength]="150"
+          id="description"
+          formControlName="description"
+          [class.is-invalid]="
+            userFormControls['description'].invalid &&
+            userFormControls['description'].touched
+          "
+        />
+        <div
+          class="invalid-feedback mt-0"
+          *ngIf="
+            userFormControls['description'].invalid &&
+            userFormControls['description'].touched
+          "
+        >
+          <div
+            *ngIf="
+              userFormControls['description'].errors &&
+              userFormControls['description'].errors['required']
+            "
+          >
+            description is required
+          </div>
+          <div
+            *ngIf="
+              userFormControls['description'].errors &&
+              userFormControls['description'].errors['minlength']
+            "
+          >
+            Minimum 3 character is rquired
+          </div>
+          <div
+            *ngIf="
+              userFormControls['description'].errors &&
+              userFormControls['description'].errors['pattern']
+            "
+          >
+            Only character is allowed
+          </div>
+        </div>
       </div>
       <div class="col-md-6 mb-3">
         <label class="form-label" for="text">Role:</label>
-        <!-- <input type="text" class="form-control client-field" [maxLength]="150" id="role" formControlName="role"  > -->
 
-        <ng-select  [items]="roleList"   formControlName="role" bindLabel="name" bindValue="name">
-  
-
+        <ng-select
+          [items]="roleList"
+          formControlName="role"
+          bindLabel="name"
+          bindValue="name"
+          required
+          touched
+          [class.is-invalid]="
+            userFormControls['role'].invalid && userFormControls['role'].touched
+          "
+        >
           <ng-option *ngFor="let role of roleList">
-              {{role.name}}
-
+            {{ role.name }}
           </ng-option>
-
-
         </ng-select>
-
-
-        
-
-
-
-       
-
-        
-        <!-- <label  class="form-label" for="language">Role:</label> <br>
-        <select  name="language" id="language"  id="role" formControlName="role">
-          <option value="Admin">Admin</option>
-          <option value="Manger">Manger</option>
-          <option value="User">User</option>
-          
-          
-        </select> -->
-
+        <div
+          class="invalid-feedback mt-0"
+          *ngIf="
+            userFormControls['role'].invalid && userFormControls['role'].touched
+          "
+        >
+          <div
+            *ngIf="
+              userFormControls['role'].errors &&
+              userFormControls['role'].errors['required']
+            "
+          >
+            Role is required
+          </div>
+        </div>
       </div>
       <div class="col-md-6 mb-3">
         <label class="form-label" for="text">Email:</label>
-        <input type="text" class="form-control client-field" [maxLength]="150" id="email" formControlName="email" required="">
+        <input
+          type="text"
+          class="form-control client-field"
+          [maxLength]="150"
+          id="email"
+          formControlName="email"
+          required=""
+          [class.is-invalid]="
+            userFormControls['email'].invalid &&
+            userFormControls['email'].touched
+          "
+        />
+        <div
+          class="invalid-feedback mt-0"
+          *ngIf="
+            userFormControls['email'].invalid &&
+            userFormControls['email'].touched
+          "
+        >
+          <div
+            *ngIf="
+              userFormControls['email'].errors &&
+              userFormControls['email'].errors['required']
+            "
+          >
+            Email is required
+          </div>
+          <div
+            *ngIf="
+              userFormControls['email'].errors &&
+              userFormControls['email'].errors['email']
+            "
+          >
+            Valid email required
+          </div>
+        </div>
       </div>
       <div class="col-md-6 mb-3">
         <label class="form-label" for="text">Contact Number:</label>
-        <input type="text" class="form-control client-field" [maxLength]="150" id="number" formControlName="number">
+        <input
+          type="text"
+          class="form-control client-field"
+          [maxLength]="150"
+          id="number"
+          formControlName="number"
+          [class.is-invalid]="
+            userFormControls['number'].invalid &&
+            userFormControls['number'].touched
+          "
+        />
+        <div
+          class="invalid-feedback mt-0"
+          *ngIf="
+            userFormControls['number'].invalid &&
+            userFormControls['number'].touched
+          "
+        >
+          <div
+            *ngIf="
+              userFormControls['number'].errors &&
+              userFormControls['number'].errors['required']
+            "
+          >
+            Contact number is required
+          </div>
+          <div
+            *ngIf="
+              userFormControls['number'].errors &&
+              userFormControls['number'].errors['minlength']
+            "
+          >
+            Minimum 6 digit is rquired
+          </div>
+          <div
+            *ngIf="
+              userFormControls['number'].errors &&
+              userFormControls['number'].errors['pattern']
+            "
+          >
+            Only Number is allowed
+          </div>
+        </div>
       </div>
-
       <div class="col-md-6 mb-3">
         <label class="form-label" for="text">Password:</label>
-        <input type="text" class="form-control client-field" [maxLength]="150" id="password" formControlName="password">
+        <input
+          type="text"
+          class="form-control client-field"
+          [maxLength]="150"
+          id="password"
+          formControlName="password"
+          [class.is-invalid]="
+            userFormControls['password'].invalid &&
+            userFormControls['password'].touched
+          "
+        />
+        <div
+          class="invalid-feedback mt-0"
+          *ngIf="
+            userFormControls['password'].invalid &&
+            userFormControls['password'].touched
+          "
+        >
+          <div
+            *ngIf="
+              userFormControls['password'].errors &&
+              userFormControls['password'].errors['required']
+            "
+          >
+            Password is required
+          </div>
+          <div
+            *ngIf="
+              userFormControls['password'].errors &&
+              userFormControls['password'].errors['minlength']
+            "
+          >
+            Minimum 6 digit is rquired
+          </div>
+        </div>
       </div>
-
       <div class="row">
         <div class="col-md-6">
-          <button type="submit" class="btn btn-primary" [class.disabled]="userForm.invalid"
-            (click)="addUser()">Add</button>
-
-
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [class.disabled]="userForm.invalid"
+            (click)="addUser(userForm.value)"
+          >
+            Add
+          </button>
         </div>
-
       </div>
-
-
-
     </div>
   </form>
-
-
 </div>

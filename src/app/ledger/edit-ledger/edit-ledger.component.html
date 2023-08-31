@@ -1,38 +1,297 @@
-
-<div class=" container-fluid  mt-2">
-    <form [formGroup]="ledgerForm" >
-        <div class="row">
-            <div class="col-md-6 mb-3">
-              <label class="form-label" for="text">Description:</label>
-              <input type="text" class="form-control client-field" maxLength="150" id="description" formControlName="description"> 
-              </div> 
-
-              <div class="col-md-6 mb-3">
-                <label class="form-label" for="text">Credit:</label>
-                <input type="number"  class="form-control client-field"[maxLength]="150" id="amount" formControlName="amount"> 
-              </div>
-              
-        </div>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-              <label class="form-label" for="text">Debit:</label>
-              <input type="number" class="form-control client-field" maxLength="150" id="name" formControlName="debit"> 
-              </div> 
-              <div class="col-md-6 mb-3">
-                <label class="form-label" for="text">Date:</label>
-                <input type="date"  class="form-control client-field"[maxLength]="150" id="date" formControlName="date"> 
-              </div>
-              
-        </div>
-        
-        
-        <div class="row">
-            <div class="col-md-6">
-                <button type="submit" class="btn btn-primary" [class.disabled] = "ledgerForm.invalid" (click)="UpdateLedger()">Update</button>
-            </div>
-
+<div class="container-fluid mt-3">
+  <form [formGroup]="ledgerForm" (ngSubmit)="UpdateLedger(ledgerForm.value)">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label" for="text">Ledger Name</label>
+        <input
+          type="text"
+          class="form-control client-field"
+          maxLength="150"
+          id="name"
+          formControlName="name"
+          [class.is-invalid]="
+            ledgerFormControls['name'].invalid &&
+            ledgerFormControls['name'].touched
+          "
+        />
+        <div
+          class="invalid-feedback mt-0"
+          *ngIf="
+            ledgerFormControls['name'].invalid &&
+            ledgerFormControls['name'].touched
+          "
+        >
+          <div
+            *ngIf="
+              ledgerFormControls['name'].errors &&
+              ledgerFormControls['name'].errors['required']
+            "
+          >
+            Ledger name is required
           </div>
-    </form>
+          <div
+            *ngIf="
+              ledgerFormControls['name'].errors &&
+              ledgerFormControls['name'].errors['minlength']
+            "
+          >
+            Minimum 3 character is rquired in Ledger name
+          </div>
+          <div
+            *ngIf="
+              ledgerFormControls['name'].errors &&
+              ledgerFormControls['name'].errors['pattern']
+            "
+          >
+            Only character is allowed
+          </div>
+        </div>
+      </div>
 
+      <div class="col-md-6 mb-3">
+        <label class="form-label" for="text">Year</label><br />
 
+        <p-calendar
+          class="calender-input"
+          view="year"
+          dateFormat="yy"
+          inputId="yearpicker"
+          formControlName="year"
+          [class.is-invalid]="
+            ledgerFormControls['year'].invalid &&
+            ledgerFormControls['year'].touched
+          "
+        >
+        </p-calendar>
+        <div
+          class="invalid-feedback mt-0"
+          *ngIf="
+            ledgerFormControls['year'].invalid &&
+            ledgerFormControls['year'].touched
+          "
+        >
+          <div
+            *ngIf="
+              ledgerFormControls['year'].errors &&
+              ledgerFormControls['year'].errors['required']
+            "
+          >
+            year is required
+          </div>
+        </div>
+      </div>
+    </div>
+    <table class="table table-bordered">
+      <thead class="table-light">
+        <tr>
+          <th>Description</th>
+          <th>Credit</th>
+          <th>Debit</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody formArrayName="ledgerquantities">
+        <ng-container
+          *ngFor="let quantity of ledgerQuantities().controls; let i = index"
+          [formGroupName]="i"
+        >
+          <tr>
+            <td>
+              <input
+                type="text"
+                formControlName="description"
+                class="form-control text"
+                placeholder="Enter Description"
+                [class.is-invalid]="
+                  ledgerQuantities().controls[i].get('description')?.invalid &&
+                  ledgerQuantities().controls[i].get('description')?.touched
+                "
+              />
+              <div
+                class="invalid-feedback mt-0"
+                *ngIf="
+                  ledgerQuantities().controls[i].get('description')?.invalid &&
+                  ledgerQuantities().controls[i].get('description')?.touched
+                "
+              >
+                <div
+                  *ngIf="ledgerQuantities().controls[i].get('description')?.errors && ledgerQuantities().controls[i].get('description')?.errors?.['required'] "
+                >
+                  description is required
+                </div>
+                <div
+                  *ngIf="ledgerQuantities().controls[i].get('description')?.errors && ledgerQuantities().controls[i].get('description')?.errors?.['minlength'] "
+                >
+                  minimum c char is required
+                </div>
+              </div>
+            </td>
+            <td>
+              <input
+                type="text"
+                formControlName="credit"
+                class="form-control"
+                (keyup)="onKeyPressCreditControl($event, i)"
+                [class.is-invalid]="
+                  ledgerQuantities().controls[i].get('credit')?.invalid &&
+                  ledgerQuantities().controls[i].get('credit')?.touched
+                "
+              />
+
+              <div
+                class="invalid-feedback mt-0"
+                *ngIf="
+                  ledgerQuantities().controls[i].get('credit')?.invalid &&
+                  ledgerQuantities().controls[i].get('credit')?.touched
+                "
+              >
+                <div
+                  *ngIf="ledgerQuantities().controls[i].get('credit')?.errors && ledgerQuantities().controls[i].get('credit')?.errors?.['required'] "
+                >
+                  Credit is required
+                </div>
+                <div
+                  *ngIf="ledgerQuantities().controls[i].get('credit')?.errors && ledgerQuantities().controls[i].get('credit')?.errors?.['pattern'] "
+                >
+                  Only Number is allowed
+                </div>
+              </div>
+            </td>
+            <td>
+              <input
+                type="text"
+                formControlName="debit"
+                class="form-control"
+                (keyup)="onKeyPressDebitControl($event, i)"
+                [class.is-invalid]="
+                  ledgerQuantities().controls[i].get('debit')?.invalid &&
+                  ledgerQuantities().controls[i].get('debit')?.touched
+                "
+              />
+              <div
+                class="invalid-feedback mt-0"
+                *ngIf="
+                  ledgerQuantities().controls[i].get('debit')?.invalid &&
+                  ledgerQuantities().controls[i].get('debit')?.touched
+                "
+              >
+                <div
+                  *ngIf="ledgerQuantities().controls[i].get('debit')?.errors && ledgerQuantities().controls[i].get('debit')?.errors?.['required'] "
+                >
+                  Debit is required
+                </div>
+                <div
+                  *ngIf="ledgerQuantities().controls[i].get('debit')?.errors && ledgerQuantities().controls[i].get('debit')?.errors?.['pattern'] "
+                >
+                  Only Number is allowed
+                </div>
+              </div>
+            </td>
+            <td>
+              <input
+                type="date"
+                formControlName="date"
+                class="form-control"
+                [class.is-invalid]="
+                  ledgerQuantities().controls[i].get('date')?.invalid &&
+                  ledgerQuantities().controls[i].get('date')?.touched
+                "
+              />
+              <div
+                class="invalid-feedback mt-0"
+                *ngIf="
+                  ledgerQuantities().controls[i].get('date')?.invalid &&
+                  ledgerQuantities().controls[i].get('date')?.touched
+                "
+              >
+                <div
+                  *ngIf="ledgerQuantities().controls[i].get('date')?.errors && ledgerQuantities().controls[i].get('date')?.errors?.['required'] "
+                >
+                  Date is required
+                </div>
+              </div>
+            </td>
+            <td class="plus-btn">
+              <button
+                type="button"
+                class="btn btn-primary plus"
+                (click)="addLedgerRow()"
+              >
+                +
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger minus"
+                (click)="removeLedgerRow(i)"
+              >
+                -
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+      <thead>
+        <tr>
+          <th>Profit/Loss</th>
+          <th>
+            <input
+              type="number"
+              formControlName="loss"
+              name="loss"
+              class="form-control"
+              [(ngModel)]="ledgerLost"
+              readonly
+            />
+          </th>
+          <th>
+            <input
+              type="number"
+              formControlName="profit"
+              name="profit"
+              class="form-control"
+              [(ngModel)]="ledgerProfit"
+              readonly
+            />
+          </th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr>
+          <th>Tottal</th>
+          <th>
+            <input
+              type="number"
+              formControlName="creditSum"
+              name="creditSum"
+              class="form-control"
+              readonly
+            />
+          </th>
+          <th>
+            <input
+              type="number"
+              formControlName="debitSum"
+              name="debitSum"
+              class="form-control"
+              readonly
+            />
+          </th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
+    <div class="row">
+      <div class="col-md-6">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [class.disabled]="ledgerForm.invalid"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  </form>
 </div>

@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  navbarCollapsed = true;
+
+  toggleNavbarCollapsing(){
+    this.navbarCollapsed = !this.navbarCollapsed;
+  }
 
 }

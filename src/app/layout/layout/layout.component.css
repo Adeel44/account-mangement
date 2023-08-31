@@ -1,16 +1,25 @@
+h3 {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  color: red;
+}
 
+.main {
+  height: 100%;
+}
+.main-area {
+  height: 100vh;
+  display: flex;
 
- 
- h3{
-   margin-top: 15px;
-   display: flex;
-    justify-content: center;
-    color: red;
- }
+  flex-direction: row;
+}
 
- .main{
-   height: 100%;
-
- }
-
-
+#content {
+  width: 100%;
+  /* height: calc(100vh - 92px); */
+  height: 100vh;
+  display: inli100ne-block;
+  vertical-align: top;
+  overflow: auto;
+}

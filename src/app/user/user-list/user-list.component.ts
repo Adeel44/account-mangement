@@ -2,61 +2,49 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 import { ToastrService } from 'ngx-toastr';
-
+import { IUser } from '../model/IUser';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  styleUrls: ['./user-list.component.css'],
 })
 export class UserListComponent {
-  userList:any
-  // logedin user data
-  LogedInUser:any;
-  constructor( private user_Service:UserService , private activatedRoute:ActivatedRoute, private toastr: ToastrService){
-
-  }
-
+  userList!: IUser[] ;
+  LogedInUser: any;
+  constructor(
+    private user_Service: UserService,
+    private activatedRoute: ActivatedRoute,
+    private toastr: ToastrService
+  ) {}
   ngOnInit(): void {
-    this.getList()
-
-   this.LogedInUser= sessionStorage.getItem('userInfo');
-   this.LogedInUser= JSON.parse(this.LogedInUser)
-   //this.role= this.LogedInUser.role
-
-   console.log("Login User Detail"+this.LogedInUser)
-   console.log("Login User role"+this.LogedInUser.role)
-   console.log("Login User email:"+this.LogedInUser.email)
-
-
-    
-    
+    this.getUserList();
+    this.LogedInUser = sessionStorage.getItem('userInfo');
+    this.LogedInUser = JSON.parse(this.LogedInUser);
   }
-  getList(){
-    this.user_Service.getUserList().subscribe((result:any)=>{
-      this.userList = result
-      console.log(result)
-    })
-
+  getUserList() {
+    this.user_Service.getUserList().subscribe({
+      next: (res) => {
+        this.userList = res;
+      },
+      error: () => {
+        this.toastr.error('Server error User list not fetched');
+      },
+    });
   }
-
-  deleteUser(userid:any){
-
-    if(this.LogedInUser.role==='Manager'){
+  deleteUser(userid: string) {
+    if (this.LogedInUser.role === 'Manager') {
       this.toastr.warning('You are not authorized to delete User');
-      //alert("You are not authorized to delete User")
-    }else{
-      console.log(userid)
-      this.user_Service.deleteUserById(userid).subscribe((result)=>{
-        this.toastr.success('User deleted successfully');
-        this.getList()
+    } else {
+      this.user_Service.deleteUserById(userid).subscribe({
+        next: () => {
+          this.toastr.success('User deleted successfully');
+          this.getUserList();
+        },
+        error: () => {
+          this.toastr.error('Server error User deleted');
+        },
       });
     }
-    
-   
   }
-  
-
-
-
 }

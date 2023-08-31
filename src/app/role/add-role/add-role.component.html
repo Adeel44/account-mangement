@@ -1,28 +1,45 @@
 <div class=" container-fluid  mt-2">
-    <form [formGroup]="roleForm" >
-        <div class="row">
-            <div class="col-md-6 mb-3">
-              <label class="form-label" for="text">Role Name:</label>
-              <input type="text" class="form-control client-field" maxLength="150" id="name" formControlName="name"> 
-              </div> 
-              <div class="col-md-6 mb-3">
-                <label class="form-label" for="text"> Description:</label>
-                <input type="text"  class="form-control client-field"[maxLength]="150" id="description" formControlName="description"> 
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                    <button type="submit" class="btn btn-primary" [class.disabled] = "roleForm.invalid" (click)="createRole()">Add</button>
-                    
-
-                </div>
-
-              </div>
-
-              
-
+  <form [formGroup]="roleForm">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label" for="text">Role Name:</label>
+        <input type="text" class="form-control client-field" maxLength="150" id="name" formControlName="name"
+          [class.is-invalid]="roleFormControls['name'].invalid && roleFormControls['name'].touched ">
+        <div class="invalid-feedback mt-0"
+          *ngIf="roleFormControls['name'].invalid && roleFormControls['name'].touched ">
+          <div *ngIf="roleFormControls['name'].errors && roleFormControls['name'].errors['required']">
+            Role name is required
+          </div>
+          <div *ngIf="roleFormControls['name'].errors && roleFormControls['name'].errors['minlength']">
+            Minimum 3 character is rquired
+          </div>
+          <div *ngIf="roleFormControls['name'].errors  && roleFormControls['name'].errors['pattern']">
+            Only character is allowed
+          </div>
         </div>
-    </form>
-
-
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label" for="text"> Description:</label>
+        <input type="text" class="form-control client-field" [maxLength]="150" id="description"
+          formControlName="description"
+          [class.is-invalid]="roleFormControls['description'].invalid && roleFormControls['description'].touched ">
+        <div class="invalid-feedback mt-0"
+          *ngIf="roleFormControls['description'].invalid && roleFormControls['description'].touched ">
+          <div *ngIf="roleFormControls['description'].errors && roleFormControls['description'].errors['required']">
+            description is required
+          </div>
+          <div *ngIf="roleFormControls['description'].errors  && roleFormControls['description'].errors['pattern']">
+            Only character is allowed
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-primary" [class.disabled]="roleForm.invalid"
+            (click)="createRole(roleForm.value)">Add</button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
 

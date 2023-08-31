@@ -3,10 +3,8 @@
     background-color: #2263AE;
     overflow: hidden;
     transition: 0.8s;
-    height: calc(100vh - 92px);
-    /* height: 100vh; */
-   
-  
+    /* height: calc(100vh - 92px); */
+    height: 100vh;
 }
 
 .link{
@@ -65,3 +63,13 @@
     line-height: 24px;
    
 }
+.left-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+
+    background-color: #FFFFFF;
+    border-right:solid lightgray
+}
+
